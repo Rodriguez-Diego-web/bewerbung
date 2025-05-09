@@ -1,0 +1,909 @@
+import React, { useState, useRef } from 'react';
+import styled, { keyframes } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { 
+  faPlay, 
+  faPause, 
+  faExpand, 
+  faVolumeUp, 
+  faVolumeMute,
+  faTimes,
+  faFilter,
+  faGraduationCap,
+  faCalendarAlt,
+  faEye,
+  faClock,
+  faBullseye,
+  faPuzzlePiece,
+  faCheckCircle,
+  faTools,
+  faUsers,
+  faArrowRight,
+  faLink
+} from '@fortawesome/free-solid-svg-icons';
+import { videos } from '../data/videosData';
+import { useNavigate } from 'react-router-dom';
+
+// Animations
+const fadeIn = keyframes`
+  from { opacity: 0; }
+  to { opacity: 1; }
+`;
+
+const slideUp = keyframes`
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+`;
+
+// Styled Components
+const PageContainer = styled.div`
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: ${fadeIn} 0.5s ease-out;
+`;
+
+const PageHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+const PageTitle = styled.h1`
+  font-size: 28px;
+  color: var(--text-color);
+  margin: 0;
+  position: relative;
+  
+  &::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin-top: 10px;
+  }
+`;
+
+const FiltersContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+`;
+
+const FilterButton = styled.button<{ active: boolean }>`
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: ${props => props.active ? 'var(--accent-color)' : 'var(--secondary-color)'};
+  color: ${props => props.active ? 'white' : 'var(--text-color)'};
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  &:hover {
+    background-color: ${props => props.active ? 'var(--accent-color)' : 'var(--hover-color)'};
+  }
+  
+  svg {
+    font-size: 12px;
+  }
+`;
+
+const VideosGrid = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+  animation: ${slideUp} 0.5s ease-out;
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+  }
+`;
+
+const VideoCard = styled.div`
+  background-color: var(--secondary-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+`;
+
+const VideoThumbnail = styled.div<{ thumbnail: string }>`
+  height: 180px;
+  background-color: #333;
+  background-image: ${props => props.thumbnail ? `url(${props.thumbnail})` : 'none'};
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 50%);
+  }
+`;
+
+const PlayOverlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s;
+  z-index: 1;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .play-button {
+    width: 60px;
+    height: 60px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s;
+    opacity: 0.9;
+    
+    &:hover {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+    
+    svg {
+      color: white;
+      font-size: 24px;
+      margin-left: 4px;
+    }
+  }
+`;
+
+const VideoInfo = styled.div`
+  padding: 18px;
+`;
+
+const VideoTitle = styled.h3`
+  margin: 0 0 10px 0;
+  font-size: 18px;
+  color: var(--text-color);
+  font-weight: 600;
+  line-height: 1.4;
+`;
+
+const VideoDescription = styled.p`
+  margin: 0 0 15px 0;
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
+const MetaInfo = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 12px;
+`;
+
+const MetaItem = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-light);
+  
+  svg {
+    font-size: 12px;
+    color: var(--accent-color);
+  }
+`;
+
+const CategoryTag = styled.div`
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 15px;
+  background-color: var(--accent-color-light);
+  color: var(--accent-color);
+  font-size: 12px;
+  font-weight: 500;
+  margin-right: 8px;
+`;
+
+const SemesterTag = styled.div`
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 15px;
+  background-color: var(--secondary-accent-light);
+  color: var(--secondary-accent);
+  font-size: 12px;
+  font-weight: 500;
+`;
+
+const TagsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+`;
+
+// Video Player Modal
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: ${fadeIn} 0.3s ease-out;
+  overflow-y: auto;
+  padding: 30px 15px;
+`;
+
+const ModalContent = styled.div`
+  width: 90%;
+  max-width: 1000px;
+  background-color: var(--main-color);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+  animation: ${slideUp} 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  
+  @media (max-width: 768px) {
+    width: 95%;
+  }
+`;
+
+const VideoPlayerContainer = styled.div`
+  position: relative;
+  width: 100%;
+  background-color: #000;
+  
+  video {
+    width: 100%;
+    display: block;
+  }
+`;
+
+const PlayerControls = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+  ${VideoPlayerContainer}:hover & {
+    opacity: 1;
+  }
+`;
+
+const ControlButton = styled.button`
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  svg {
+    font-size: 16px;
+  }
+`;
+
+const PlayButton = styled(ControlButton)`
+  background-color: var(--accent-color);
+  
+  &:hover {
+    background-color: var(--accent-color-hover);
+  }
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  svg {
+    font-size: 18px;
+  }
+`;
+
+const VideoDetailContainer = styled.div`
+  padding: 30px;
+  overflow-y: auto;
+  flex: 1;
+  
+  @media (max-width: 768px) {
+    padding: 20px;
+  }
+`;
+
+const VideoDetailTitle = styled.h2`
+  font-size: 24px;
+  color: var(--text-color);
+  margin: 0 0 15px 0;
+  
+  @media (max-width: 768px) {
+    font-size: 20px;
+  }
+`;
+
+const DetailSection = styled.div`
+  margin-bottom: 25px;
+`;
+
+const SectionTitle = styled.h3`
+  font-size: 18px;
+  color: var(--text-color);
+  margin: 0 0 15px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  svg {
+    color: var(--accent-color);
+  }
+`;
+
+const DetailText = styled.p`
+  margin: 0 0 15px 0;
+  font-size: 16px;
+  color: var(--text-light);
+  line-height: 1.6;
+`;
+
+const DetailsList = styled.ul`
+  margin: 0;
+  padding: 0 0 0 20px;
+  list-style-type: none;
+`;
+
+const DetailItem = styled.li`
+  position: relative;
+  padding: 0 0 0 25px;
+  margin-bottom: 10px;
+  color: var(--text-light);
+  font-size: 15px;
+  line-height: 1.5;
+  
+  &:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-color);
+  }
+`;
+
+const ToolsContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const ToolTag = styled.div`
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  svg {
+    color: var(--accent-color);
+    font-size: 12px;
+  }
+`;
+
+const TeamContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+`;
+
+const TeamMember = styled.div`
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  svg {
+    color: var(--accent-color);
+    font-size: 12px;
+  }
+`;
+
+const RelatedProject = styled.div`
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: var(--secondary-color);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  
+  &:hover {
+    background-color: var(--hover-color);
+  }
+`;
+
+const RelatedProjectInfo = styled.div`
+  flex: 1;
+`;
+
+const RelatedProjectTitle = styled.h4`
+  margin: 0 0 5px 0;
+  font-size: 16px;
+  color: var(--text-color);
+`;
+
+const RelatedProjectType = styled.div`
+  font-size: 14px;
+  color: var(--text-light);
+`;
+
+const ViewRelatedButton = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--accent-color);
+  font-size: 14px;
+  font-weight: 500;
+`;
+
+const TwoColumnLayout = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+`;
+
+const Column = styled.div``;
+
+const NoVideosMessage = styled.div`
+  text-align: center;
+  margin: 50px 0;
+  color: var(--text-light);
+  
+  h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  p {
+    font-size: 16px;
+  }
+`;
+
+// Component
+const VideosPage: React.FC = () => {
+  const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>('Alle');
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const navigate = useNavigate();
+  
+  // Get unique categories
+  const categories = ['Alle', ...Array.from(new Set(videos.map(video => video.category)))];
+  
+  // Filter videos by category
+  const filteredVideos = activeCategory === 'Alle' 
+    ? videos 
+    : videos.filter(video => video.category === activeCategory);
+  
+  const handleVideoClick = (id: number) => {
+    setSelectedVideo(id);
+    setTimeout(() => {
+      if (videoRef.current) {
+        videoRef.current.play().catch(error => {
+          console.error("Autoplay failed:", error);
+          // Fallback: Zeige den Play-Button an, wenn Autoplay fehlschlägt
+          setIsPlaying(false);
+        });
+        setIsPlaying(true);
+      }
+    }, 300);
+  };
+  
+  const handlePlayPause = () => {
+    if (videoRef.current) {
+      if (isPlaying) {
+        videoRef.current.pause();
+      } else {
+        videoRef.current.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+  
+  const handleMute = () => {
+    if (videoRef.current) {
+      videoRef.current.muted = !isMuted;
+      setIsMuted(!isMuted);
+    }
+  };
+  
+  const handleFullscreen = () => {
+    if (videoRef.current) {
+      if (videoRef.current.requestFullscreen) {
+        videoRef.current.requestFullscreen();
+      }
+    }
+  };
+  
+  const closeModal = () => {
+    setSelectedVideo(null);
+    setIsPlaying(false);
+  };
+  
+  const handleRelatedProjectClick = (projectId: number) => {
+    closeModal();
+    navigate(`/projekte/${projectId}`);
+  };
+  
+  const selectedVideoData = selectedVideo !== null 
+    ? videos.find(video => video.id === selectedVideo) 
+    : null;
+    
+  const getRelatedProject = (projectId?: number) => {
+    if (!projectId) return null;
+    
+    return {
+      id: projectId,
+      title: `Projekt #${projectId}`,
+      type: "Zugehöriges Projekt"
+    };
+  };
+  
+  const relatedProject = selectedVideoData?.relatedProjectId 
+    ? getRelatedProject(selectedVideoData.relatedProjectId) 
+    : null;
+    
+  // Video-Thumbnail Generator
+  const generateThumbnail = (videoSrc: string, thumbnail: string) => {
+    // Wenn ein Thumbnail existiert, verwende es
+    if (thumbnail && !thumbnail.includes('undefined') && !thumbnail.endsWith('.jpg')) {
+      return thumbnail;
+    }
+    
+    // Fallback zur Video-URL ohne Dateiendung (für Platzhalter)
+    return `/thumbnails/video_placeholder.jpg`;
+  };
+  
+  return (
+    <PageContainer>
+      <PageHeader>
+        <PageTitle>Meine Videos</PageTitle>
+        <FiltersContainer>
+          <FilterButton 
+            active={false} 
+            onClick={() => {}}>
+            <FontAwesomeIcon icon={faFilter} />
+            Filter
+          </FilterButton>
+          
+          {categories.map((category) => (
+            <FilterButton 
+              key={category}
+              active={activeCategory === category}
+              onClick={() => setActiveCategory(category)}>
+              {category}
+            </FilterButton>
+          ))}
+        </FiltersContainer>
+      </PageHeader>
+      
+      {filteredVideos.length > 0 ? (
+        <VideosGrid>
+          {filteredVideos.map(video => (
+            <VideoCard key={video.id} onClick={() => handleVideoClick(video.id)}>
+              <VideoThumbnail thumbnail={generateThumbnail(video.videoUrl, video.thumbnailUrl)}>
+                <PlayOverlay>
+                  <div className="play-button">
+                    <FontAwesomeIcon icon={faPlay} />
+                  </div>
+                </PlayOverlay>
+              </VideoThumbnail>
+              <VideoInfo>
+                <TagsContainer>
+                  <CategoryTag>{video.category}</CategoryTag>
+                  {video.semester && <SemesterTag>{video.semester}</SemesterTag>}
+                </TagsContainer>
+                <VideoTitle>{video.title}</VideoTitle>
+                <VideoDescription>{video.description}</VideoDescription>
+                <MetaInfo>
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faCalendarAlt} />
+                    {video.date}
+                  </MetaItem>
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faClock} />
+                    {video.duration}
+                  </MetaItem>
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faEye} />
+                    {video.views} Views
+                  </MetaItem>
+                </MetaInfo>
+              </VideoInfo>
+            </VideoCard>
+          ))}
+        </VideosGrid>
+      ) : (
+        <NoVideosMessage>
+          <h3>Keine Videos gefunden</h3>
+          <p>Es gibt keine Videos in der Kategorie "{activeCategory}".</p>
+        </NoVideosMessage>
+      )}
+      
+      {selectedVideo !== null && selectedVideoData && (
+        <ModalOverlay onClick={closeModal}>
+          <ModalContent onClick={e => e.stopPropagation()}>
+            <VideoPlayerContainer>
+              <CloseButton onClick={closeModal}>
+                <FontAwesomeIcon icon={faTimes} />
+              </CloseButton>
+              <video 
+                ref={videoRef}
+                src={selectedVideoData.videoUrl} 
+                controls={false}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)} 
+                onClick={handlePlayPause}
+              />
+              <PlayerControls>
+                <PlayButton onClick={handlePlayPause}>
+                  <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
+                </PlayButton>
+                <ControlButton onClick={handleMute}>
+                  <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
+                </ControlButton>
+                <ControlButton onClick={handleFullscreen}>
+                  <FontAwesomeIcon icon={faExpand} />
+                </ControlButton>
+              </PlayerControls>
+            </VideoPlayerContainer>
+            
+            <VideoDetailContainer>
+              <VideoDetailTitle>{selectedVideoData.title}</VideoDetailTitle>
+              
+              <MetaInfo>
+                {selectedVideoData.semester && (
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faGraduationCap} />
+                    {selectedVideoData.semester}
+                  </MetaItem>
+                )}
+                <MetaItem>
+                  <FontAwesomeIcon icon={faCalendarAlt} />
+                  {selectedVideoData.date}
+                </MetaItem>
+                <MetaItem>
+                  <FontAwesomeIcon icon={faClock} />
+                  {selectedVideoData.duration}
+                </MetaItem>
+                <MetaItem>
+                  <FontAwesomeIcon icon={faEye} />
+                  {selectedVideoData.views} Views
+                </MetaItem>
+              </MetaInfo>
+              
+              <DetailSection>
+                <SectionTitle>
+                  <FontAwesomeIcon icon={faFilter} />
+                  Projektbeschreibung
+                </SectionTitle>
+                <DetailText>
+                  {selectedVideoData.fullDescription}
+                </DetailText>
+              </DetailSection>
+              
+              <TwoColumnLayout>
+                <Column>
+                  {selectedVideoData.goals && selectedVideoData.goals.length > 0 && (
+                    <DetailSection>
+                      <SectionTitle>
+                        <FontAwesomeIcon icon={faBullseye} />
+                        Projektziele
+                      </SectionTitle>
+                      <DetailsList>
+                        {selectedVideoData.goals.map((goal, index) => (
+                          <DetailItem key={index}>{goal}</DetailItem>
+                        ))}
+                      </DetailsList>
+                    </DetailSection>
+                  )}
+                  
+                  {selectedVideoData.challenges && selectedVideoData.challenges.length > 0 && (
+                    <DetailSection>
+                      <SectionTitle>
+                        <FontAwesomeIcon icon={faPuzzlePiece} />
+                        Herausforderungen
+                      </SectionTitle>
+                      <DetailsList>
+                        {selectedVideoData.challenges.map((challenge, index) => (
+                          <DetailItem key={index}>{challenge}</DetailItem>
+                        ))}
+                      </DetailsList>
+                    </DetailSection>
+                  )}
+                </Column>
+                
+                <Column>
+                  {selectedVideoData.outcomes && selectedVideoData.outcomes.length > 0 && (
+                    <DetailSection>
+                      <SectionTitle>
+                        <FontAwesomeIcon icon={faCheckCircle} />
+                        Ergebnisse
+                      </SectionTitle>
+                      <DetailsList>
+                        {selectedVideoData.outcomes.map((outcome, index) => (
+                          <DetailItem key={index}>{outcome}</DetailItem>
+                        ))}
+                      </DetailsList>
+                    </DetailSection>
+                  )}
+                  
+                  {selectedVideoData.tools && selectedVideoData.tools.length > 0 && (
+                    <DetailSection>
+                      <SectionTitle>
+                        <FontAwesomeIcon icon={faTools} />
+                        Verwendete Tools
+                      </SectionTitle>
+                      <ToolsContainer>
+                        {selectedVideoData.tools.map((tool, index) => (
+                          <ToolTag key={index}>
+                            {tool}
+                          </ToolTag>
+                        ))}
+                      </ToolsContainer>
+                    </DetailSection>
+                  )}
+                </Column>
+              </TwoColumnLayout>
+              
+              {selectedVideoData.teamMembers && selectedVideoData.teamMembers.length > 0 && (
+                <DetailSection>
+                  <SectionTitle>
+                    <FontAwesomeIcon icon={faUsers} />
+                    Team
+                  </SectionTitle>
+                  <TeamContainer>
+                    {selectedVideoData.teamMembers.map((member, index) => (
+                      <TeamMember key={index}>
+                        {member}
+                      </TeamMember>
+                    ))}
+                  </TeamContainer>
+                </DetailSection>
+              )}
+              
+              {selectedVideoData.client && (
+                <DetailSection>
+                  <SectionTitle>
+                    <FontAwesomeIcon icon={faLink} />
+                    Kunde
+                  </SectionTitle>
+                  <DetailText>
+                    {selectedVideoData.client}
+                  </DetailText>
+                </DetailSection>
+              )}
+              
+              {relatedProject && (
+                <DetailSection>
+                  <SectionTitle>
+                    <FontAwesomeIcon icon={faLink} />
+                    Verwandtes Projekt
+                  </SectionTitle>
+                  <RelatedProject onClick={() => handleRelatedProjectClick(relatedProject.id)}>
+                    <RelatedProjectInfo>
+                      <RelatedProjectTitle>{relatedProject.title}</RelatedProjectTitle>
+                      <RelatedProjectType>{relatedProject.type}</RelatedProjectType>
+                    </RelatedProjectInfo>
+                    <ViewRelatedButton>
+                      Ansehen
+                      <FontAwesomeIcon icon={faArrowRight} />
+                    </ViewRelatedButton>
+                  </RelatedProject>
+                </DetailSection>
+              )}
+            </VideoDetailContainer>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </PageContainer>
+  );
+};
+
+export default VideosPage;
