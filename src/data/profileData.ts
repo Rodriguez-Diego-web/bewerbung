@@ -26,7 +26,7 @@ interface Skill {
   category: 'design' | 'development' | 'tools' | 'softSkills';
 }
 
-interface SocialLink {
+export interface SocialLink {
   id: number;
   platform: string;
   url: string;
@@ -67,8 +67,8 @@ export const profileData: Profile = {
   firstName: "Kadir Diego",
   lastName: "Padin Rodriguez",
   position: "UI/UX Designer & Frontend-Entwickler",
-  avatarUrl: "/fotos/2. semster/_ FoGr_WA03_Rodriguez_KadirDiego-2.jpg",
-  heroImage: "/fotos/2. semster/WhatsApp Bild 2023-05-03 um 19.17.41.jpg",
+  avatarUrl: "",
+  heroImage: "",
   tagline: "Kreative digitale Lösungen mit Fokus auf Benutzerfreundlichkeit und ästhetischem Design",
   about: "Als passionierter UI/UX Designer und Frontend-Entwickler verbinde ich technisches Know-how mit kreativem Design. Mit meinem Hintergrund in digitaler Medienproduktion schaffe ich Anwendungen, die nicht nur gut aussehen, sondern auch intuitiv bedienbar sind. Ich lege besonderen Wert auf nutzerorientierte Gestaltung und innovative Lösungsansätze, die sowohl ästhetisch ansprechend als auch funktional sind.",
   location: "Hamburg, Deutschland",

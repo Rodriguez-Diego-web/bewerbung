@@ -22,18 +22,19 @@ export interface Video {
 export const videos: Video[] = [
   {
     id: 1,
-    title: "Marketing Intro - Kundenprojekt",
-    description: "Ein Einführungsvideo für eine Marketingkampagne, das im Rahmen eines Kundenprojekts erstellt wurde.",
+    title: "Marketing Intro - Arudino Uno Projekt",
+    description: "Ein Einführungsvideo für eine Marketing intro, das im Rahmen des Arudino Uno Projekts erstellt wurde.",
     fullDescription: "Dieses Video wurde als Teil einer umfassenden Marketingkampagne für einen lokalen Kunden erstellt. Ziel war es, die Markenbekanntheit zu steigern und die wichtigsten Werte des Unternehmens zu kommunizieren. Das Projekt umfasste die gesamte Planung, Drehbucherstellung, Aufnahme und Nachbearbeitung. Besonderer Wert wurde auf die visuelle Ästhetik und klare Botschaft gelegt.",
     thumbnailUrl: "/thumbnails/marketing_intro_new.jpg",
     videoUrl: "/Marketing Intro_3.mp4",
     duration: "1:45",
-    date: "Januar 2025",
+    date: "Dezember 2024",
+    semester: "7. Semester",
     category: "Marketing",
     views: "1.2K",
-    tools: ["Adobe Premiere Pro", "After Effects", "Photoshop"],
-    client: "Local Marketing Agency",
-    teamMembers: ["Kadir Diego Padin Rodriguez", "Anna Schwarz", "Michael Weber"],
+    tools: ["Adobe Premiere Pro", "After Effects", "Photoshop", "Blender"],
+    client: "Hochschule Bremerhaven",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni",],
     goals: [
       "Entwicklung eines ansprechenden Intro-Videos für die Social Media Präsenz",
       "Vermittlung der Kernwerte der Marke in unter 2 Minuten",
@@ -51,79 +52,18 @@ export const videos: Video[] = [
     ]
   },
   {
-    id: 2,
-    title: "Case Study Video - 4. Semester",
-    description: "Videoanalyse eines Designprojekts aus dem 4. Semester, mit Fokus auf Benutzerforschung und Prototyping.",
-    fullDescription: "Diese Case Study dokumentiert den gesamten Design-Thinking-Prozess für ein digitales Produkt. Von der ersten Recherche über Personas, User Stories, Wireframes bis hin zum finalen Prototyp werden alle Schritte detailliert erklärt. Das Video zeigt auch die iterative Natur des Designprozesses und wie Nutzerfeedback in die Entwicklung eingeflossen ist. Diese Arbeit wurde im 4. Semester im Rahmen des Kurses 'User Experience Design' erstellt und erhielt die Bestnote.",
-    thumbnailUrl: "/thumbnails/Case_Video_Rodriguez_Rathgeber_4 semster.jpg",
-    videoUrl: "/videos 7 semster/Case_Video_Rodriguez_Rathgeber_4 semster.mp4",
-    duration: "3:28",
-    date: "April 2024",
-    semester: "4. Semester",
-    category: "Projektpräsentation",
-    views: "856",
-    tools: ["Figma", "Adobe XD", "InVision", "Premiere Pro"],
-    teamMembers: ["Kadir Diego Padin Rodriguez", "Julia Rathgeber"],
-    goals: [
-      "Dokumentation eines vollständigen UX-Design-Prozesses",
-      "Demonstration von Benutzerinterviews und deren Einfluss auf Designentscheidungen",
-      "Visualisierung der Entwicklung von ersten Wireframes bis zum fertigen Prototyp"
-    ],
-    challenges: [
-      "Komplexe Forschungsergebnisse in ein klares narratives Format bringen",
-      "Visualisierung abstrakter Designkonzepte",
-      "Kondensierung eines mehrmonatigen Prozesses in ein kurzes Video"
-    ],
-    outcomes: [
-      "Das Projekt wurde als Beispiel für zukünftige Semester ausgewählt",
-      "Note 1,0 für die Projektarbeit und Präsentation",
-      "Verbesserung der Methodik für die Dokumentation von Designprozessen"
-    ],
-    relatedProjectId: 3
-  },
-  {
-    id: 3,
-    title: "UI/UX Design Process - Roomies App",
-    description: "Screencast der Roomies App, ein Projekt aus dem 3. Semester UI/UX Design Kurs.",
-    fullDescription: "Roomies ist eine App-Konzept, das entwickelt wurde, um das Zusammenleben in Wohngemeinschaften zu verbessern. Dieses Video zeigt den Entwicklungsprozess von der ersten Idee bis zum interaktiven Prototyp. Besonderer Fokus liegt auf der Benutzerfreundlichkeit und dem visuellen Design. Die App bietet Funktionen wie gemeinsame Einkaufslisten, Aufgabenverteilung, geteilte Kalender und Abrechnung von gemeinsamen Ausgaben. Der gesamte Design-Prozess wurde in Figma umgesetzt und die Interaktionen wurden mit Prototyping-Tools animiert.",
-    thumbnailUrl: "/thumbnails/roomies-3.jpg",
-    videoUrl: "/fotos/roomies Kopie3 Semster Ui:ux/roomies-3.mov",
-    duration: "2:17",
-    date: "November 2023",
-    semester: "3. Semester",
-    category: "UI/UX Design",
-    views: "975",
-    tools: ["Figma", "Principle", "Sketch", "Adobe Illustrator"],
-    teamMembers: ["Kadir Diego Padin Rodriguez", "Sophia Müller", "Leon Schmidt"],
-    goals: [
-      "Entwicklung einer intuitiven Benutzeroberfläche für WG-Organisation",
-      "Implementierung von User-Centered Design Methoden",
-      "Erstellung eines voll funktionsfähigen High-Fidelity Prototyps"
-    ],
-    challenges: [
-      "Balancierung verschiedener Nutzerbedürfnisse in Wohngemeinschaften",
-      "Integration komplexer Funktionen in ein einfaches Interface",
-      "Entwicklung eines konsistenten Designsystems für alle App-Bereiche"
-    ],
-    outcomes: [
-      "Positives Nutzerfeedback in Usability-Tests",
-      "Grundlage für ein mögliches Startup-Projekt",
-      "Verbesserung der UI/UX Design-Fähigkeiten des Teams"
-    ],
-    relatedProjectId: 5
-  },
-  {
     id: 4,
-    title: "Case Study - Designprozess",
+    title: "Interaktive Systeme Intro",
     description: "Detaillierte Analyse eines komplexen Designprozesses mit User Research und Iteration.",
     fullDescription: "Diese umfassende Case Study dokumentiert einen kompletten Designprozess von der Problemdefinition bis zur finalen Lösung. Besonders im Fokus steht die Methodik der Nutzerforschung und wie die gewonnenen Erkenntnisse in iterative Designverbesserungen eingeflossen sind. Das Video zeigt Interviews mit Nutzern, Affinity Mapping, Customer Journey Mapping und die verschiedenen Prototyping-Phasen. Der gesamte Prozess wurde durch die Double Diamond Methode strukturiert und zeigt, wie divergentes und konvergentes Denken zu innovativen Lösungen führt.",
     thumbnailUrl: "/thumbnails/case_video.jpg",
     videoUrl: "/videos/case_video.mp4",
     duration: "4:12",
     date: "Februar 2025",
+    semester: "4. Semester",
     category: "Case Study",
     views: "1.8K",
-    tools: ["Adobe Premiere Pro", "Miro", "Figma", "UserTesting.com"],
+    tools: ["Adobe Premiere Pro", "After Effects", "Photoshop"],
     goals: [
       "Dokumentation und Analyse eines vollständigen Design Thinking Prozesses",
       "Demonstration der Bedeutung von Nutzerforschung für erfolgreiche Produkte",
@@ -142,7 +82,7 @@ export const videos: Video[] = [
   },
   {
     id: 5,
-    title: "Projektvorstellung - Social Media",
+    title: "Projektvorstellung - Social Media TEIL 1",
     description: "Kurzes Video zur Präsentation eines Social Media Projekts mit Fokus auf visuelle Kommunikation.",
     fullDescription: "Dieses Video präsentiert ein komplettes Social Media Kampagnenkonzept, das für einen fiktiven Kunden entwickelt wurde. Es umfasst Content-Strategie, visuelle Gestaltung und Analyseansätze. Die Kampagne zielt darauf ab, die Zielgruppe der 18-30-Jährigen über verschiedene Plattformen wie Instagram, TikTok und Twitter anzusprechen. Das Video demonstriert, wie eine einheitliche Markenbotschaft über verschiedene Kanäle hinweg kommuniziert werden kann, während die spezifischen Stärken jeder Plattform optimal genutzt werden.",
     thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.48.jpg",
@@ -150,7 +90,7 @@ export const videos: Video[] = [
     duration: "0:43",
     date: "März 2025",
     semester: "7. Semester",
-    category: "Social Media",
+    category: "AVM",
     views: "432",
     tools: ["Adobe Premiere Pro", "Photoshop", "Illustrator", "Canva"],
     goals: [
@@ -171,7 +111,7 @@ export const videos: Video[] = [
   },
   {
     id: 6,
-    title: "Interaktiver Prototyp - App Demo",
+    title: "Projektvorstellung - Social Media TEIL 2",
     description: "Demonstration eines interaktiven App-Prototyps mit Fokus auf Benutzerinteraktion und Animation.",
     fullDescription: "Dieses Video demonstriert einen voll funktionsfähigen interaktiven Prototyp einer mobilen Anwendung. Die App wurde entwickelt, um komplexe Daten in einer benutzerfreundlichen Oberfläche darzustellen. Besonderer Wert wurde auf die Mikrointeraktionen und Animationen gelegt, die das Nutzererlebnis verbessern. Der Prototyp wurde in Figma erstellt und mit erweiterten Prototyping-Funktionen angereichert. Das Video zeigt den kompletten User Flow durch verschiedene Funktionen der App und hebt die wichtigsten UX-Entscheidungen hervor.",
     thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.02.jpg",
@@ -179,7 +119,7 @@ export const videos: Video[] = [
     duration: "0:51",
     date: "März 2025",
     semester: "7. Semester",
-    category: "App Design",
+    category: "AVM",
     views: "673",
     tools: ["Figma", "Principle", "After Effects", "Framer"],
     goals: [
@@ -200,7 +140,7 @@ export const videos: Video[] = [
   },
   {
     id: 7,
-    title: "Screencast - Webdesign Projekt",
+    title: "Projektvorstellung - Social Media TEIL 3",
     description: "Screencast, der den Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
     fullDescription: "Dieser Screencast dokumentiert den kompletten Entwicklungsprozess eines Webdesign-Projekts von den ersten Wireframes bis zum fertigen Prototyp. Das Video zeigt die Arbeit in verschiedenen Design- und Prototyping-Tools und erklärt die wichtigsten Designentscheidungen. Besondere Aufmerksamkeit wird auf responsive Design-Prinzipien und die Implementierung eines konsistenten Design-Systems gelegt. Der Screencast zeigt auch, wie Feedback von Stakeholdern in iterative Verbesserungen eingeflossen ist und wie Design-Entscheidungen auf der Grundlage von Benutzerforschung getroffen wurden.",
     thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.06.jpg",
@@ -208,7 +148,37 @@ export const videos: Video[] = [
     duration: "0:38",
     date: "März 2025",
     semester: "7. Semester",
-    category: "Webdesign",
+    category: "AVM",
+    views: "512",
+    tools: ["Figma", "Adobe XD", "Photoshop", "VS Code"],
+    goals: [
+      "Dokumentation eines vollständigen Webdesign-Prozesses in Echtzeit",
+      "Demonstration von responsiven Design-Prinzipien und deren Implementierung",
+      "Erklärung der Entwicklung und Anwendung eines Design-Systems"
+    ],
+    challenges: [
+      "Effektive Kommunikation komplexer Design-Entscheidungen in Videoformat",
+      "Darstellung des iterativen Prozesses in begrenzter Zeit",
+      "Gleichzeitige Erklärung von Design-Theorie und praktischer Umsetzung"
+    ],
+    outcomes: [
+      "Umfassende Dokumentation als Lernressource",
+      "Verbesserung der eigenen Design-Workflow-Effizienz",
+      "Positives Feedback von Kommilitonen und Dozenten"
+    ],
+    relatedProjectId: 2
+  },
+  {
+    id: 8,
+    title: "Projektvorstellung - Social Media TEIL 4",
+    description: "Screencast, der den Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
+    fullDescription: "Dieser Screencast dokumentiert den kompletten Entwicklungsprozess eines Webdesign-Projekts von den ersten Wireframes bis zum fertigen Prototyp. Das Video zeigt die Arbeit in verschiedenen Design- und Prototyping-Tools und erklärt die wichtigsten Designentscheidungen. Besondere Aufmerksamkeit wird auf responsive Design-Prinzipien und die Implementierung eines konsistenten Design-Systems gelegt. Der Screencast zeigt auch, wie Feedback von Stakeholdern in iterative Verbesserungen eingeflossen ist und wie Design-Entscheidungen auf der Grundlage von Benutzerforschung getroffen wurden.",
+    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.57.jpg",
+    videoUrl: "/videos 7 semster/2.mp4",
+    duration: "0:38",
+    date: "März 2025",
+    semester: "7. Semester",
+    category: "AVM",
     views: "512",
     tools: ["Figma", "Adobe XD", "Photoshop", "VS Code"],
     goals: [

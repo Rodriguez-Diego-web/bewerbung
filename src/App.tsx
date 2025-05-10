@@ -12,9 +12,7 @@ import { ThemeProvider, useTheme } from './contexts/ThemeContext';
 import MyFeedPage from './pages/MyFeedPage';
 import ProjectsPage from './pages/ProjectsPage';
 import VideosPage from './pages/VideosPage';
-import FavoritesPage from './pages/FavoritesPage';
-import DiscoverPage from './pages/DiscoverPage';
-import NotificationsPage from './pages/NotificationsPage';
+// import FavoritesPage from './pages/FavoritesPage'; // Removed
 import ContactPage from './pages/ContactPage';
 import ProjectDetailPage from './pages/ProjectDetailPage'; // Import the ProjectDetailPage component
 
@@ -104,9 +102,7 @@ const AppContent: React.FC = () => {
               <Route path="/projekte" element={<ProjectsPage />} />
               <Route path="/projekte/:projectId" element={<ProjectDetailPage />} />
               <Route path="/videos" element={<VideosPage />} />
-              <Route path="/favorites" element={<FavoritesPage />} />
-              <Route path="/entdecken" element={<DiscoverPage />} />
-              <Route path="/notifications" element={<NotificationsPage />} />
+              {/* <Route path="/favorites" element={<FavoritesPage />} /> */}{/* Removed */}
               <Route path="/kontakt" element={<ContactPage />} />
             </Routes>
           </ContentContainer>

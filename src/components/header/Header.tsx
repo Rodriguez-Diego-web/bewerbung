@@ -3,7 +3,6 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faBars } from '@fortawesome/free-solid-svg-icons';
-import ThemeToggle from '../common/ThemeToggle';
 
 interface HeaderProps {
   toggleSidebar: () => void;
@@ -121,7 +120,6 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar, isMobile }) => {
         <input type="text" placeholder="Search" />
       </SearchBar>
       <RightSection>
-        <ThemeToggle />
         <NavLinks>
           <NavLinkItem 
             active={location.pathname === '/projekte'} 

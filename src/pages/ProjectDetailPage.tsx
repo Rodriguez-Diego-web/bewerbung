@@ -65,17 +65,20 @@ const ProjectHeader = styled.div`
   }
 `;
 
-const ProjectHero = styled.div<{ hasImage: boolean, imageSrc?: string }>`
-  height: ${props => props.hasImage ? '350px' : '0'};
+const ProjectHero = styled.div<{ $hasImage: boolean, $imageSrc?: string }>`
+  height: ${props => props.$hasImage ? '350px' : '0'};
+  background-color: ${props => props.$hasImage ? 'transparent' : '#222'};
+  background-image: ${props => props.$imageSrc ? `url(${props.$imageSrc})` : 'none'};
+  background-size: cover;
+  background-position: center;
   border-radius: 16px;
   overflow: hidden;
   margin-bottom: 30px;
   box-shadow: 0 5px 15px var(--shadow-color);
   position: relative;
-  background-image: ${props => props.imageSrc ? `url(${props.imageSrc})` : 'none'};
-  background-size: cover;
-  background-position: center;
-  display: ${props => props.hasImage ? 'block' : 'none'};
+  display: ${props => props.$hasImage ? 'block' : 'none'};
+  transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: ${props => props.$hasImage ? 1 : 0};
   
   &::after {
     content: '';
@@ -88,7 +91,7 @@ const ProjectHero = styled.div<{ hasImage: boolean, imageSrc?: string }>`
   }
   
   @media (max-width: 768px) {
-    height: ${props => props.hasImage ? '200px' : '0'};
+    height: ${props => props.$hasImage ? '200px' : '0'};
     margin-bottom: 20px;
   }
 `;
@@ -401,22 +404,6 @@ const GalleryImage = styled.div<{ src: string }>`
   }
 `;
 
-const VideoContainer = styled.div`
-  margin-top: 40px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px var(--shadow-color);
-  
-  video {
-    width: 100%;
-    display: block;
-  }
-  
-  @media (max-width: 768px) {
-    margin-top: 24px;
-  }
-`;
-
 const LightboxOverlay = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
@@ -551,17 +538,26 @@ const ProjectDetailPage: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   
   useEffect(() => {
-    if (projectId) {
-      const foundProject = projects.find(p => p.id === parseInt(projectId));
-      setProject(foundProject || null);
-      
-      // Scroll to top when project changes
-      window.scrollTo(0, 0);
+    const numProjectId = parseInt(projectId || '', 10);
+    const foundProject = projects.find(p => p.id === numProjectId);
+    if (foundProject) {
+      setProject(foundProject);
+      console.log('Project Data for ID:', numProjectId, foundProject); // DEBUG
+      console.log('Project Images Array:', foundProject.images); // DEBUG
+      if (foundProject.images && foundProject.images.length > 0) {
+        console.log('First Image Path for Hero:', foundProject.images[0]?.path); // DEBUG
+      }
+    } else {
+      // Handle project not found, e.g., navigate to a 404 page or back
+      navigate('/projekte'); 
     }
-  }, [projectId]);
+    
+    // Scroll to top when project changes
+    window.scrollTo(0, 0);
+  }, [projectId, navigate]);
   
   const goBack = () => {
-    navigate('/projekte');
+    navigate(-1); // Navigiert zur vorherigen Seite in der History
   };
   
   const openLightbox = (imagePath: string, index: number) => {
@@ -660,8 +656,8 @@ const ProjectDetailPage: React.FC = () => {
       </BackButton>
       
       <ProjectHero 
-        hasImage={project.images.length > 0} 
-        imageSrc={project.images.length > 0 ? project.images[0].path : undefined}
+        $hasImage={project.images && project.images.length > 0} 
+        $imageSrc={project.images[0]?.path} 
       />
       
       <ProjectHeader>
@@ -714,12 +710,7 @@ const ProjectDetailPage: React.FC = () => {
       
       <ProjectInfo>
         <LeftColumn>
-          {/* Video content */}
-          {project.category === 'avm-video' && project.videoPath && (
-            <VideoContainer>
-              <video src={project.videoPath} controls autoPlay loop />
-            </VideoContainer>
-          )}
+          {/* Video content removed as 'avm-video' category is deprecated */}
           
           {/* Image gallery */}
           {project.images.length > 0 && (
@@ -795,25 +786,27 @@ const ProjectDetailPage: React.FC = () => {
       </ProjectInfo>
       
       {/* Lightbox for fullscreen images */}
-      <LightboxOverlay isOpen={lightboxOpen} onClick={closeLightbox}>
-        <LightboxImage src={currentImage} onClick={(e) => e.stopPropagation()} />
-        <LightboxClose onClick={closeLightbox}>&times;</LightboxClose>
-        
-        {project.images.length > 1 && (
-          <LightboxControls>
-            <LightboxButton onClick={goToPrevImage}>
-              <FontAwesomeIcon icon={faChevronLeft} />
-            </LightboxButton>
-            <LightboxButton onClick={goToNextImage}>
-              <FontAwesomeIcon icon={faChevronRight} />
-            </LightboxButton>
-          </LightboxControls>
-        )}
-        
-        <LightboxCounter>
-          {currentImageIndex + 1} / {project.images.length}
-        </LightboxCounter>
-      </LightboxOverlay>
+      {lightboxOpen && project && project.images && project.images.length > 0 && (
+        <LightboxOverlay isOpen={lightboxOpen} onClick={closeLightbox}>
+          <LightboxImage src={currentImage} onClick={(e) => e.stopPropagation()} />
+          <LightboxClose onClick={closeLightbox}>&times;</LightboxClose>
+          
+          {project.images.length > 1 && (
+            <LightboxControls>
+              <LightboxButton onClick={goToPrevImage}>
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </LightboxButton>
+              <LightboxButton onClick={goToNextImage}>
+                <FontAwesomeIcon icon={faChevronRight} />
+              </LightboxButton>
+            </LightboxControls>
+          )}
+          
+          <LightboxCounter>
+            {currentImageIndex + 1} / {project.images.length}
+          </LightboxCounter>
+        </LightboxOverlay>
+      )}
     </PageContainer>
   );
 };

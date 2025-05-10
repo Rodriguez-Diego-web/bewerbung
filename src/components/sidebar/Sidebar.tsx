@@ -6,9 +6,6 @@ import {
   faHome, 
   faFolderOpen, 
   faVideo, 
-  faStar,
-  faCompass,
-  faBell,
   faTimes
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,12 +15,12 @@ interface SidebarProps {
   isMobile: boolean;
 }
 
-const SidebarContainer = styled.div<{ isOpen: boolean; isMobile: boolean }>`
+const SidebarContainer = styled.div<{ $isOpen: boolean; $isMobile: boolean }>`
   width: 200px;
   height: 100vh;
   background-color: var(--primary-color);
   border-right: 1px solid var(--border-color);
-  padding: 20px 0;
+  padding: 12px 0 20px 0;
   position: fixed;
   left: 0;
   top: 0;
@@ -32,13 +29,13 @@ const SidebarContainer = styled.div<{ isOpen: boolean; isMobile: boolean }>`
   
   @media (max-width: 768px) {
     width: 250px;
-    transform: translateX(${props => props.isOpen ? '0' : '-100%'});
-    box-shadow: ${props => props.isOpen ? '0 0 15px rgba(0, 0, 0, 0.5)' : 'none'};
+    transform: translateX(${props => props.$isOpen ? '0' : '-100%'});
+    box-shadow: ${props => props.$isOpen ? '0 0 15px rgba(0, 0, 0, 0.5)' : 'none'};
   }
 `;
 
-const Overlay = styled.div<{ isOpen: boolean }>`
-  display: ${props => props.isOpen ? 'block' : 'none'};
+const Overlay = styled.div<{ $isOpen: boolean }>`
+  display: ${props => props.$isOpen ? 'block' : 'none'};
   position: fixed;
   top: 0;
   left: 0;
@@ -51,17 +48,15 @@ const Overlay = styled.div<{ isOpen: boolean }>`
 const LogoLink = styled.div`
   display: flex;
   align-items: center;
-  padding: 0 20px 20px;
-  font-weight: bold;
-  font-size: 18px;
-  color: var(--text-color);
+  padding: 6px 20px 8px 20px;
   border-bottom: 1px solid var(--border-color);
   margin-bottom: 10px;
   text-decoration: none;
   cursor: pointer;
   
-  span {
-    margin-left: 8px;
+  .logo-image {
+    height: 30px;
+    width: auto;
   }
 `;
 
@@ -79,12 +74,12 @@ const CloseButton = styled.div`
   }
 `;
 
-const NavItemContainer = styled.div<{ active?: boolean }>`
+const NavItemContainer = styled.div<{ $active?: boolean }>`
   display: flex;
   align-items: center;
   padding: 10px 20px;
-  color: ${props => props.active ? 'var(--accent-color)' : 'var(--text-color)'};
-  background-color: ${props => props.active ? 'var(--hover-color)' : 'transparent'};
+  color: ${props => props.$active ? 'var(--accent-color)' : 'var(--text-color)'};
+  background-color: ${props => props.$active ? 'var(--hover-color)' : 'transparent'};
   transition: background-color 0.2s, color 0.2s;
   position: relative;
   cursor: pointer;
@@ -162,20 +157,19 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, isMobile }) =>
   
   return (
     <>
-      {isMobile && <Overlay isOpen={isOpen} onClick={toggleSidebar} />}
-      <SidebarContainer isOpen={isOpen} isMobile={isMobile}>
+      {isMobile && <Overlay $isOpen={isOpen} onClick={toggleSidebar} />}
+      <SidebarContainer $isOpen={isOpen} $isMobile={isMobile}>
         {isMobile && (
           <CloseButton onClick={toggleSidebar}>
             <FontAwesomeIcon icon={faTimes} />
           </CloseButton>
         )}
         <LogoLink onClick={() => handleNavigation('/')}>
-          <FontAwesomeIcon icon={faHome} />
-          <span>code.zone</span>
+          <img src="/Logo.png" alt="code.zone Logo" className="logo-image" />
         </LogoLink>
         
         <NavItemContainer 
-          active={location.pathname === '/'} 
+          $active={location.pathname === '/'} 
           onClick={() => handleNavigation('/')}
         >
           <div className="icon">
@@ -185,7 +179,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, isMobile }) =>
         </NavItemContainer>
         
         <NavItemContainer 
-          active={location.pathname === '/projekte'} 
+          $active={location.pathname === '/projekte'} 
           onClick={() => handleNavigation('/projekte')}
         >
           <div className="icon">
@@ -195,50 +189,18 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, toggleSidebar, isMobile }) =>
         </NavItemContainer>
         
         <NavItemContainer 
-          active={location.pathname === '/videos'} 
+          $active={location.pathname === '/videos'} 
           onClick={() => handleNavigation('/videos')}
         >
           <div className="icon">
             <FontAwesomeIcon icon={faVideo} />
           </div>
           <div className="text">Videos</div>
-          <div className="badge">1</div>
-        </NavItemContainer>
-        
-        <NavItemContainer 
-          active={location.pathname === '/favorites'} 
-          onClick={() => handleNavigation('/favorites')}
-        >
-          <div className="icon">
-            <FontAwesomeIcon icon={faStar} />
-          </div>
-          <div className="text">Favorites</div>
-        </NavItemContainer>
-        
-        <NavItemContainer 
-          active={location.pathname === '/entdecken'} 
-          onClick={() => handleNavigation('/entdecken')}
-        >
-          <div className="icon">
-            <FontAwesomeIcon icon={faCompass} />
-          </div>
-          <div className="text">More to Discover</div>
-        </NavItemContainer>
-        
-        <NavItemContainer 
-          active={location.pathname === '/notifications'} 
-          onClick={() => handleNavigation('/notifications')}
-        >
-          <div className="icon">
-            <FontAwesomeIcon icon={faBell} />
-          </div>
-          <div className="text">Notifications</div>
-          <div className="badge">3</div>
         </NavItemContainer>
         
         <ProfileItem>
-          <div className="avatar">R</div>
-          <div className="name">Robert J.</div>
+          <div className="avatar">SL</div>
+          <div className="name">Sebastian & Leroy</div>
         </ProfileItem>
       </SidebarContainer>
     </>

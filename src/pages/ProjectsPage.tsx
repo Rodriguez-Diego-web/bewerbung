@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGlobe, faPaintBrush, faVideo, faEllipsisH, faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faPaintBrush, faEllipsisH, faExternalLinkAlt, faBullhorn, faCode } from '@fortawesome/free-solid-svg-icons';
 import { Project, getProjectsByCategory } from '../data/projectsData';
 import { useNavigate } from 'react-router-dom';
 
@@ -118,38 +118,6 @@ const ProjectImage = styled.div<{ imagePath?: string }>`
   }
 `;
 
-const VideoThumbnail = styled.div`
-  height: 200px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #111;
-  
-  video {
-    max-height: 100%;
-    max-width: 100%;
-  }
-  
-  .play-button {
-    position: absolute;
-    background-color: rgba(249, 115, 22, 0.8);
-    color: white;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    cursor: pointer;
-    
-    &:hover {
-      background-color: var(--accent-color);
-    }
-  }
-`;
-
 const ProjectInfo = styled.div`
   padding: 20px;
   flex: 1;
@@ -234,8 +202,8 @@ const ProjectsPage: React.FC = () => {
         return faGlobe;
       case 'ui-ux':
         return faPaintBrush;
-      case 'avm-video':
-        return faVideo;
+      case 'programmieren':
+        return faCode;
       default:
         return faEllipsisH;
     }
@@ -273,18 +241,18 @@ const ProjectsPage: React.FC = () => {
           UI/UX Design
         </FilterButton>
         <FilterButton 
-          active={activeCategory === 'avm-video'} 
-          onClick={() => setActiveCategory('avm-video')}
+          active={activeCategory === 'programmieren'} 
+          onClick={() => setActiveCategory('programmieren')}
         >
-          <FontAwesomeIcon icon={faVideo} />
-          AVM Videos
+          <FontAwesomeIcon icon={faCode} />
+          Programmieren
         </FilterButton>
         <FilterButton 
           active={activeCategory === 'other'} 
           onClick={() => setActiveCategory('other')}
         >
-          <FontAwesomeIcon icon={faEllipsisH} />
-          Andere
+          <FontAwesomeIcon icon={faBullhorn} />
+          CMP
         </FilterButton>
       </FilterContainer>
       
@@ -292,24 +260,15 @@ const ProjectsPage: React.FC = () => {
         <ProjectsGrid>
           {filteredProjects.map((project: Project, index: number) => (
             <ProjectCard key={project.id} onClick={() => navigateToProjectDetail(project)}>
-              {project.category === 'avm-video' && project.videoPath ? (
-                <VideoThumbnail>
-                  <video src={project.videoPath} muted />
-                  <div className="play-button">
-                    <FontAwesomeIcon icon={faVideo} />
-                  </div>
-                </VideoThumbnail>
-              ) : (
-                <ProjectImage imagePath={project.images.length > 0 ? project.images[0].path : undefined}>
-                  <div className="view-more">
-                    <FontAwesomeIcon icon={faExternalLinkAlt} />
-                    Details anzeigen
-                  </div>
-                  <CategoryIcon>
-                    <FontAwesomeIcon icon={getCategoryIcon(project.category)} />
-                  </CategoryIcon>
-                </ProjectImage>
-              )}
+              <ProjectImage imagePath={project.images.length > 0 ? project.images[0].path : undefined}>
+                <div className="view-more">
+                  <FontAwesomeIcon icon={faExternalLinkAlt} />
+                  Details anzeigen
+                </div>
+                <CategoryIcon>
+                  <FontAwesomeIcon icon={getCategoryIcon(project.category)} />
+                </CategoryIcon>
+              </ProjectImage>
               <ProjectInfo>
                 <ProjectTitle>{project.title}</ProjectTitle>
                 <ProjectDescription>{project.description}</ProjectDescription>

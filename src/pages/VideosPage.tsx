@@ -285,8 +285,8 @@ const ModalContent = styled.div`
   overflow: hidden;
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   animation: ${slideUp} 0.4s ease-out;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto 1fr;
   max-height: 90vh;
   
   @media (max-width: 768px) {
@@ -302,6 +302,9 @@ const VideoPlayerContainer = styled.div`
   video {
     width: 100%;
     display: block;
+    object-fit: contain;
+    max-height: 55vh;
+    background-color: #000;
   }
 `;
 
@@ -380,9 +383,9 @@ const CloseButton = styled.button`
 `;
 
 const VideoDetailContainer = styled.div`
-  padding: 30px;
+  padding: 20px 30px 30px 30px;
   overflow-y: auto;
-  flex: 1;
+  min-height: 0;
   
   @media (max-width: 768px) {
     padding: 20px;
@@ -652,7 +655,7 @@ const VideosPage: React.FC = () => {
   // Video-Thumbnail Generator
   const generateThumbnail = (videoSrc: string, thumbnail: string) => {
     // Wenn ein Thumbnail existiert, verwende es
-    if (thumbnail && !thumbnail.includes('undefined') && !thumbnail.endsWith('.jpg')) {
+    if (thumbnail && !thumbnail.includes('undefined')) {
       return thumbnail;
     }
     

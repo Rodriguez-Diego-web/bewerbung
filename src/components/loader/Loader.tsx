@@ -26,7 +26,7 @@ const pulse = keyframes`
   100% { transform: scale(0.95); opacity: 0.7; }
 `;
 
-const LoaderOverlay = styled.div<{ isVisible: boolean }>`
+const LoaderOverlay = styled.div<{ $isVisible: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -38,10 +38,10 @@ const LoaderOverlay = styled.div<{ isVisible: boolean }>`
   justify-content: center;
   align-items: center;
   z-index: 1000;
-  opacity: ${props => (props.isVisible ? 1 : 0)};
-  visibility: ${props => (props.isVisible ? 'visible' : 'hidden')};
+  opacity: ${props => (props.$isVisible ? 1 : 0)};
+  visibility: ${props => (props.$isVisible ? 'visible' : 'hidden')};
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  animation: ${props => (props.isVisible ? fadeIn : fadeOut)} 0.5s ease forwards;
+  animation: ${props => (props.$isVisible ? fadeIn : fadeOut)} 0.5s ease forwards;
 `;
 
 const LogoContainer = styled.div`
@@ -84,7 +84,7 @@ const LoadingText = styled.p`
 
 const Loader: React.FC<LoaderProps> = ({ isLoading }) => {
   return (
-    <LoaderOverlay isVisible={isLoading}>
+    <LoaderOverlay $isVisible={isLoading}>
       <LogoContainer>
         <LogoImage src="/Logo.png" alt="Logo" />
         <Spinner />

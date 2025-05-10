@@ -5,3 +5,4 @@ public/fotos/ki[[:space:]]bulder[[:space:]]3[[:space:]]semster[[:space:]]/Angel[
 public/fotos/ki[[:space:]]bulder[[:space:]]3[[:space:]]semster[[:space:]]/Schwein[[:space:]]Kopie.png filter=lfs diff=lfs merge=lfs -text
 public/fotos/ki[[:space:]]bulder[[:space:]]3[[:space:]]semster[[:space:]]/Goldfischglas[[:space:]]Kopie.png filter=lfs diff=lfs merge=lfs -text
 public/fotos/roomies[[:space:]]Kopie3[[:space:]]Semster[[:space:]]Ui:ux/roomies-3.mov filter=lfs diff=lfs merge=lfs -text
+public/Projektbilder/ki/*.png filter=lfs diff=lfs merge=lfs -text

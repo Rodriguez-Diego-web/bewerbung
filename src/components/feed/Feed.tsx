@@ -47,24 +47,20 @@ const getInitialTransform = (animType?: 'fadeIn' | 'slideUp' | 'slideInLeft' | '
 // Styled Components für den neuen Blog-Feed
 const BlogFeedContainer = styled.div`
   width: 100%;
-  /* max-width: 900px; */ /* Begrenzung für bessere Lesbarkeit - Entfernt */
-  /* margin: 40px auto; */ /* Geändert für volle Breite */
-  padding: 40px 0; /* Behält vertikalen Abstand, aber kein horizontales auto-margin oder max-width */
-  position: relative; /* Für mögliche absolut positionierte Elemente im Feed */
-  /* Beispiel für Hintergrund, falls gewünscht */
+  padding: 40px 0; 
+  position: relative; 
   color: var(--text-color);
-  /* overflow-x: hidden;  Entfernt, da max-height und overflow-y dies steuern sollten */
 
-  /* Macht den Container intern scrollbar, wenn Inhalt die max-height übersteigt */
-  max-height: calc(100vh - 180px); /* Beispiel: 100% Viewport-Höhe minus Header/Footer/Margin-Schätzungen */
-  overflow-y: auto;
+  /* REMOVED max-height and overflow properties to allow parent to handle scrolling */
+  /* max-height: calc(100vh - 180px); */
+  /* overflow-y: auto; */
 
-  /* Versteckt den Scrollbalken für WebKit (Chrome, Safari, Edge) */
-  &::-webkit-scrollbar {
+  /* REMOVED scrollbar hiding styles as overflow-y is removed */
+  /* &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none;  /* IE und Edge */
-  scrollbar-width: none;  /* Firefox */
+  -ms-overflow-style: none;  
+  scrollbar-width: none;   */
 `;
 
 const BlogSection = styled.section<{ $visible?: boolean; $animDelay?: string; $animType?: 'fadeIn' | 'slideUp' | 'slideInLeft' | 'slideInRight' }>`
@@ -121,19 +117,6 @@ const HighlightText = styled.span`
   font-weight: 600;
   /* Kleiner Leuchteffekt */
   text-shadow: 0 0 8px rgba(var(--accent-color-rgb), 0.5);
-`;
-
-const CompanyLink = styled.a`
-  color: var(--secondary-accent-color);
-  text-decoration: none;
-  font-weight: 600;
-  border-bottom: 2px dotted var(--secondary-accent-color_translucent);
-  transition: color 0.3s ease, border-bottom-color 0.3s ease;
-
-  &:hover {
-    color: var(--accent-color);
-    border-bottom-color: var(--accent-color);
-  }
 `;
 
 // Zusätzliche Styled Components für Meilensteine
@@ -245,38 +228,41 @@ const Feed: React.FC = () => {
   const sectionsData = [
     {
       id: 'intro',
-      title: 'Hallo Basti & Emb Bentley Team!',
+      title: 'Moin Basti & Leroy!',
       icon: faPaperPlane,
       animType: 'fadeIn',
       content: (
         <>
           <Paragraph>
-            Herzlich willkommen zu meinem etwas anderen Bewerbungs-Showcase! Statt eines drögen Anschreibens dachte ich mir, ich zeige euch direkt, was ich draufhabe – und was mich an <CompanyLink href="https://www.basti-emb-bentley.com" target="_blank" rel="noopener noreferrer">Basti Emb Bentley</CompanyLink> so fasziniert. Diese Seite ist nicht nur eine Demo meiner Coding-Skills, sondern auch ein kleiner Einblick in meine Motivation und wie ich ticke.
+            Eure Videoarbeiten sind echt der Knaller – hab schon viel Gutes von euch an der HS Bremerhaven gehört und eure Projekte verfolgt! Da ich selbst leidenschaftlich gern filme und wir ja quasi aus derselben Kreativ-Schmiede kommen, wollte ich mich mal direkt bei euch für ein Praktikum vorstellen.
           </Paragraph>
           <Paragraph>
-            Ihr sucht jemanden, der nicht nur Code schreibt, sondern mitdenkt, kreativ ist und für den Nutzer brennt? <HighlightText>Volltreffer!</HighlightText> Ich liebe es, intuitive und ansprechende Web-Erlebnisse zu schaffen. Und genau das möchte ich bei euch tun.
+            Diese Seite hier hab ich selbst zusammengebastelt – ja, ein bisschen coden kann ich auch 😉. Aber in erster Linie will ich euch zeigen, dass ich richtig Lust hätte, bei euren Filmprojekten mitzumischen und von euch zu lernen. Ein Praktikum bei euch wär der Hammer!
           </Paragraph>
         </>
       )
     },
     {
       id: 'journey',
-      title: 'Meine Entwicklungsreise hierher',
+      title: 'Mein Weg zum Bewegtbild',
       icon: faChartLine,
       animType: 'slideInLeft', 
       animDelay: '0.2s',
       content: (
         <>
           <Paragraph>
-            Dieses Portfolio/Blog ist mein aktuelles "Spielplatzprojekt", um React, TypeScript und moderne Web-Technologien weiter zu vertiefen. Es ist komplett von Grund auf mit viel Liebe zum Detail und dem einen oder anderen Kaffee entstanden. Die Idee war, etwas Interaktives und Persönliches zu schaffen, das über eine statische Seite hinausgeht.
+            Film und Video – das war schon immer mein Ding, besonders seit dem Studium (Digitale Medienproduktion an der HS Bremerhaven). Ich hab da echt Gas gegeben und viele eigene Sachen auf die Beine gestellt, von Imagefilmen bis Musikvideos. Ein paar Beispiele könnt ihr euch ja hier reinziehen. Gute Bilder und Storys, dafür brenn ich einfach.
+          </Paragraph>
+          <Paragraph>
+            Diese Webseite hier? Hab ich in ein paar Tagen selbst auf die Beine gestellt. Zeigt ganz gut, dass ich nicht nur filmen, sondern auch ganz passabel coden kann. Ist 'ne coole Kombi, find ich, gerade wenn man Medienprojekte mal anders präsentieren will.
           </Paragraph>
           <MilestoneList>
             {[ 
-              { id: 'ms1', title: 'Konzept & Design', date: 'April 2024', icon: faLightbulb, delay: '0.1s' },
-              { id: 'ms2', title: 'Grundstruktur mit React & TS', date: 'April 2024', icon: faUserAstronaut, delay: '0.2s' },
-              { id: 'ms3', title: 'Styling mit Styled Components', date: 'Mai 2024', icon: faMagic, delay: '0.3s' },
-              { id: 'ms4', title: 'Interaktive Blog-Komponente', date: 'Mai 2024', icon: faComments, delay: '0.4s' },
-              { id: 'ms5', title: 'Deployment & Fine-Tuning', date: 'Laufend', icon: faBullseye, delay: '0.5s' },
+              { id: 'ms1', title: 'Idee & erste Codezeilen', date: 'Anfang April 2025', icon: faLightbulb, delay: '0.1s' },
+              { id: 'ms2', title: 'Struktur und Layout-Grundlagen', date: 'Mitte April 2025', icon: faUserAstronaut, delay: '0.2s' },
+              { id: 'ms3', title: 'Design-Feinschliff & Komponentenbau', date: 'Ende April 2025', icon: faMagic, delay: '0.3s' },
+              { id: 'ms4', title: 'Interaktive Inhalte & Features', date: 'Anfang Mai 2025', icon: faComments, delay: '0.4s' },
+              { id: 'ms5', title: 'Laufende Optimierung & neue Ideen', date: 'Seit April 2025 - Heute', icon: faBullseye, delay: '0.5s' },
             ].map((milestone, index) => (
               <MilestoneItem 
                 key={milestone.id} 
@@ -298,14 +284,14 @@ const Feed: React.FC = () => {
     },
     {
       id: 'fascination',
-      title: 'Warum Basti Emb Bentley?',
+      title: 'Was mich an euch bei Basti Emb Bentley reizt',
       icon: faLightbulb,
       animType: 'slideInRight',
       animDelay: '0.3s',
       content: (
         <>
           <Paragraph>
-            Eure Projekte im Bereich <HighlightText>Augmented Reality und interaktive Erlebnisse</HighlightText> finde ich extrem spannend. Die Art, wie ihr Technologie nutzt, um Geschichten zu erzählen und komplexe Informationen zugänglich zu machen, inspiriert mich. Ich sehe da eine riesige Schnittmenge zu meinen eigenen Interessen und dem Wunsch, an innovativen Lösungen mitzuwirken.
+            Eure Projekte, und ganz besonders eure <HighlightText>extrem starken Videos</HighlightText>, hauen mich echt um – da merkt man die gemeinsame DNA von der HS Bremerhaven, auch wenn ihr schon 'ne Runde weiter seid! 😉 Genau diese Art von visuellen Geschichten und professioneller Videoproduktion will ich unbedingt noch vertiefen und direkt von euch lernen. Dass ich auch coden kann, sehe ich als cooles Extra, um vielleicht neue interaktive Elemente in solche Medienprojekte einzubauen oder sie online perfekt in Szene zu setzen.
           </Paragraph>
           <Paragraph>
             Die Unternehmenskultur, die ihr nach außen tragt – kreativ, teamorientiert und immer am Puls der Zeit – spricht mich sehr an. Ich bin überzeugt, dass ich in so einem Umfeld mein volles Potenzial entfalten kann.
@@ -315,7 +301,7 @@ const Feed: React.FC = () => {
     },
     {
       id: 'contribution',
-      title: 'Was ich einbringen kann',
+      title: 'Das bringe ich mit',
       icon: faUserAstronaut,
       animType: 'slideUp',
       animDelay: '0.1s',
@@ -325,21 +311,21 @@ const Feed: React.FC = () => {
             Neben meinen aktuellen Kenntnissen in <HighlightText>React, TypeScript, Next.js und Node.js</HighlightText> bringe ich eine große Portion Lernbereitschaft und Begeisterung für neue Technologien mit. Ich arbeite mich schnell in neue Themen ein und liebe es, an Herausforderungen zu wachsen.
           </Paragraph>
           <Paragraph>
-            Vor allem aber bringe ich eine <HighlightText>Hands-on-Mentalität</HighlightText> und den Willen mit, Dinge nicht nur zu erledigen, sondern sie richtig gut zu machen. Ich bin ein Teamplayer, kommunikativ und immer offen für Feedback.
+            Vor allem aber bringe ich eine <HighlightText>Hands-on-Mentalität</HighlightText> und den Willen mit, Dinge nicht nur zu erledigen, sondern sie richtig gut zu machen, shoutout an Justin. <br></br>Ich bin ein Teamplayer, kommunikativ und immer offen für Feedback.
           </Paragraph>
         </>
       )
     },
     {
       id: 'reflection',
-      title: 'Ein Praktikum – Und dann?',
+      title: 'Praktikum bei euch – was denn?',
       icon: faComments,
       animType: 'fadeIn',
       animDelay: '0.4s',
       content: (
         <>
           <Paragraph>
-            Ein Praktikum bei euch sehe ich als perfekte Chance, tief in die professionelle Webentwicklung einzutauchen, von erfahrenen Entwicklern zu lernen und an echten Projekten mitzuwirken. Mein Ziel ist es, mich langfristig in diesem Bereich zu etablieren und komplexe, nutzerzentrierte Anwendungen zu entwickeln.
+            Ein Praktikum bei euch sehe ich als perfekte Chance, tief in die professionelle Webentwicklung einzutauchen, von euch als erfahrenen Entwicklern und kreativen Köpfen zu lernen und an echten Projekten mitzuwirken. Gerade die Möglichkeit, meine Coding-Skills mit meiner Leidenschaft für Videografie zu verbinden und von eurer Expertise in diesem Bereich zu profitieren, reizt mich enorm. Mein Ziel ist es, mich langfristig hier weiterzuentwickeln und komplexe, nutzerzentrierte Anwendungen und Medienerlebnisse zu schaffen.
           </Paragraph>
           <Paragraph>
             Ich bin gespannt auf eure Rückmeldung und würde mich riesig freuen, wenn diese kleine Demonstration meines Könnens euer Interesse geweckt hat!
