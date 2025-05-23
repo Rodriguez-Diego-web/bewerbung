@@ -228,41 +228,46 @@ const Feed: React.FC = () => {
   const sectionsData = [
     {
       id: 'intro',
-      title: 'Moin Basti & Leroy!',
+      title: 'Moin bastiembentley!',
       icon: faPaperPlane,
       animType: 'fadeIn',
       content: (
         <>
           <Paragraph>
-            Eure Videoarbeiten sind echt der Knaller – hab schon viel Gutes von euch an der HS Bremerhaven gehört und eure Projekte verfolgt! Da ich selbst leidenschaftlich gern filme und wir ja quasi aus derselben Kreativ-Schmiede kommen, wollte ich mich mal direkt bei euch für ein Praktikum vorstellen.
+            Hab eure Arbeiten verfolgt und bin beeindruckt. Kreative Power aus Bremerhaven, made in Altenwalde trifft auf echtes Handwerk – genau meine Welt. Als Filmmaker mit technischem Know-how sehe ich bei euch die perfekte Plattform für meine nächsten Schritte.
           </Paragraph>
           <Paragraph>
-            Diese Seite hier hab ich selbst zusammengebastelt – ja, ein bisschen coden kann ich auch 😉. Aber in erster Linie will ich euch zeigen, dass ich richtig Lust hätte, bei euren Filmprojekten mitzumischen und von euch zu lernen. Ein Praktikum bei euch wär der Hammer!
+            Diese Bewerbung? Komplett selbstcodiert. Zeigt meine Denkweise: Nicht nur reden, sondern machen. Mit derselben Energie würde ich auch eure Projekte vorantreiben. Medien plus Code, ein Mix mit Potenzial.
           </Paragraph>
         </>
       )
     },
     {
       id: 'journey',
-      title: 'Mein Weg zum Bewegtbild',
+      title: 'Mein Weg zur Bewerbung bei euch',
       icon: faChartLine,
       animType: 'slideInLeft', 
       animDelay: '0.2s',
       content: (
         <>
           <Paragraph>
-            Film und Video – das war schon immer mein Ding, besonders seit dem Studium (Digitale Medienproduktion an der HS Bremerhaven). Ich hab da echt Gas gegeben und viele eigene Sachen auf die Beine gestellt, von Imagefilmen bis Musikvideos. Ein paar Beispiele könnt ihr euch ja hier reinziehen. Gute Bilder und Storys, dafür brenn ich einfach.
+            AVM-Projekte in der Uni? <HighlightText>Absolutes Highlight</HighlightText> für mich! Nichts macht mir mehr Spaß als hinter der Kamera zu stehen und dann im Schnitt zu sehen, wie alles zusammenkommt. Es ist dieses Gefühl, wenn aus einer verrückten Idee plötzlich etwas Greifbares entsteht. Genau diese Kreativität ist es, die mich total triggert.
           </Paragraph>
           <Paragraph>
-            Diese Webseite hier? Hab ich in ein paar Tagen selbst auf die Beine gestellt. Zeigt ganz gut, dass ich nicht nur filmen, sondern auch ganz passabel coden kann. Ist 'ne coole Kombi, find ich, gerade wenn man Medienprojekte mal anders präsentieren will.
+            In der Postproduktion blühe ich richtig auf. Im Team spinnen wir Ideen weiter, überlegen gemeinsam, was machbar ist und was nicht. Diese Mischung aus technischer Herausforderung und kreativer Freiheit ist genau mein Ding. Und genau das sehe ich auch in euren Arbeiten.
+          </Paragraph>
+          <Paragraph>
+            Das <HighlightText>Cold Base Projekt</HighlightText> hat mir gezeigt, wie viel Potential in der Verbindung von Video und digitalen Medien steckt. Die <HighlightText>Animationen</HighlightText> hier sind ein Experiment, aus der gleichen Begeisterung entstanden, die ich für eure Projekte empfinde.
           </Paragraph>
           <MilestoneList>
             {[ 
-              { id: 'ms1', title: 'Idee & erste Codezeilen', date: 'Anfang April 2025', icon: faLightbulb, delay: '0.1s' },
-              { id: 'ms2', title: 'Struktur und Layout-Grundlagen', date: 'Mitte April 2025', icon: faUserAstronaut, delay: '0.2s' },
-              { id: 'ms3', title: 'Design-Feinschliff & Komponentenbau', date: 'Ende April 2025', icon: faMagic, delay: '0.3s' },
-              { id: 'ms4', title: 'Interaktive Inhalte & Features', date: 'Anfang Mai 2025', icon: faComments, delay: '0.4s' },
-              { id: 'ms5', title: 'Laufende Optimierung & neue Ideen', date: 'Seit April 2025 - Heute', icon: faBullseye, delay: '0.5s' },
+              { id: 'ms1', title: 'Konzept & erste Codezeilen', date: 'Anfang April 2025', icon: faLightbulb, delay: '0.1s' },
+              { id: 'ms2', title: 'Grundstruktur & Responsive Design', date: 'Mitte April 2025', icon: faUserAstronaut, delay: '0.2s' },
+              { id: 'ms3', title: 'Integration des Cold Base Projekts', date: '29. April 2025', icon: faMagic, delay: '0.3s' },
+              { id: 'ms4', title: 'Implementierung der Animationseffekte', date: '3. Mai 2025', icon: faComments, delay: '0.4s' },
+              { id: 'ms5', title: 'Video-Showcase Optimierung', date: '12. Mai 2025', icon: faBullseye, delay: '0.5s' },
+              { id: 'ms6', title: 'Performance-Verbesserungen & UX-Updates', date: '18. Mai 2025', icon: faLightbulb, delay: '0.6s' },
+              { id: 'ms7', title: 'Finale Portfolio-Erweiterung', date: '22. Mai 2025', icon: faMagic, delay: '0.7s' },
             ].map((milestone, index) => (
               <MilestoneItem 
                 key={milestone.id} 
@@ -284,17 +289,17 @@ const Feed: React.FC = () => {
     },
     {
       id: 'fascination',
-      title: 'Was mich an euch bei Basti Emb Bentley reizt',
+      title: 'Was mich an bastiembentley reizt',
       icon: faLightbulb,
       animType: 'slideInRight',
       animDelay: '0.3s',
       content: (
         <>
           <Paragraph>
-            Eure Projekte, und ganz besonders eure <HighlightText>extrem starken Videos</HighlightText>, hauen mich echt um – da merkt man die gemeinsame DNA von der HS Bremerhaven, auch wenn ihr schon 'ne Runde weiter seid! 😉 Genau diese Art von visuellen Geschichten und professioneller Videoproduktion will ich unbedingt noch vertiefen und direkt von euch lernen. Dass ich auch coden kann, sehe ich als cooles Extra, um vielleicht neue interaktive Elemente in solche Medienprojekte einzubauen oder sie online perfekt in Szene zu setzen.
+            Eure <HighlightText>visuellen Geschichten</HighlightText> haben Charakter. Bremerhavener DNA, aber auf professionellem Level. Ich will diese Art von Storytelling vertiefen und dabei neue Verbindungen zwischen Film und Code schaffen. Eure Medienpräsenz ist kein Zufall – sie zeigt den Wert von durchdachter Konzeption und präziser Umsetzung.
           </Paragraph>
           <Paragraph>
-            Die Unternehmenskultur, die ihr nach außen tragt – kreativ, teamorientiert und immer am Puls der Zeit – spricht mich sehr an. Ich bin überzeugt, dass ich in so einem Umfeld mein volles Potenzial entfalten kann.
+            Euer Team atmet Innovation. Flache Hierarchien, klare Kommunikation, kreative Freiheit – das sind keine Buzzwords bei euch, sondern gelebte Realität. In diesem Umfeld kann ich meine Stärken voll einbringen und gleichzeitig wachsen.
           </Paragraph>
         </>
       )
@@ -308,27 +313,27 @@ const Feed: React.FC = () => {
       content: (
         <>
           <Paragraph>
-            Neben meinen aktuellen Kenntnissen in <HighlightText>React, TypeScript, Next.js und Node.js</HighlightText> bringe ich eine große Portion Lernbereitschaft und Begeisterung für neue Technologien mit. Ich arbeite mich schnell in neue Themen ein und liebe es, an Herausforderungen zu wachsen.
+            Skills in <HighlightText>React, TypeScript, Video-Editing</HighlightText> sind meine Basis. Dazu kommt visuelle Gestaltung und ein Auge für Detail. Aber wichtiger: ich lerne schnell und passe mich an. Neue Tech? Neue Tools? Kein Problem – ich tauche ein und liefere.
           </Paragraph>
           <Paragraph>
-            Vor allem aber bringe ich eine <HighlightText>Hands-on-Mentalität</HighlightText> und den Willen mit, Dinge nicht nur zu erledigen, sondern sie richtig gut zu machen, shoutout an Justin. <br></br>Ich bin ein Teamplayer, kommunikativ und immer offen für Feedback.
+            Meine Stärke ist die <HighlightText>Hands-on-Mentalität</HighlightText>. Keine langen Diskussionen, sondern Lösungen finden und umsetzen. Qualität statt Quantität. Kommunikation auf Augenhöhe. Und ein gesundes Maß Selbstorganisation, das Projekte voranbringt.
           </Paragraph>
         </>
       )
     },
     {
       id: 'reflection',
-      title: 'Praktikum bei euch – was denn?',
+      title: 'Warum ein Praktikum bei euch?',
       icon: faComments,
       animType: 'fadeIn',
       animDelay: '0.4s',
       content: (
         <>
           <Paragraph>
-            Ein Praktikum bei euch sehe ich als perfekte Chance, tief in die professionelle Webentwicklung einzutauchen, von euch als erfahrenen Entwicklern und kreativen Köpfen zu lernen und an echten Projekten mitzuwirken. Gerade die Möglichkeit, meine Coding-Skills mit meiner Leidenschaft für Videografie zu verbinden und von eurer Expertise in diesem Bereich zu profitieren, reizt mich enorm. Mein Ziel ist es, mich langfristig hier weiterzuentwickeln und komplexe, nutzerzentrierte Anwendungen und Medienerlebnisse zu schaffen.
+            Bei euch kann ich zwei Welten verbinden: visuelle Medien und digitale Technik. Mein Ziel: Von den Besten lernen, an echten Projekten wachsen, messbare Ergebnisse liefern. Euer Fokus auf hochwertige Videoproduktion trifft auf meine Medien- und Tech-Skills – eine Kombination mit echtem Mehrwert.
           </Paragraph>
           <Paragraph>
-            Ich bin gespannt auf eure Rückmeldung und würde mich riesig freuen, wenn diese kleine Demonstration meines Könnens euer Interesse geweckt hat!
+            Diese Bewerbung ist nur der Anfang. Lasst uns im Gespräch herausfinden, was wir gemeinsam erreichen können. Ich bring Energie, Ideen und Umsetzungsstärke mit – den Rest erarbeiten wir zusammen.
           </Paragraph>
         </>
       )

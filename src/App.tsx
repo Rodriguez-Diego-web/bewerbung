@@ -7,6 +7,7 @@ import Header from './components/header/Header';
 import RightSidebar from './components/sidebar/RightSidebar';
 import Loader from './components/loader/Loader';
 import { ThemeProvider, useTheme } from './contexts/ThemeContext';
+import { SearchProvider } from './contexts/SearchContext';
 
 // Import pages
 import MyFeedPage from './pages/MyFeedPage';
@@ -117,7 +118,9 @@ function App() {
   return (
     <Router>
       <ThemeProvider>
-        <AppContent />
+        <SearchProvider>
+          <AppContent />
+        </SearchProvider>
       </ThemeProvider>
     </Router>
   );

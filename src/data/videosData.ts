@@ -22,8 +22,8 @@ export interface Video {
 export const videos: Video[] = [
   {
     id: 1,
-    title: "Marketing Intro - Arudino Uno Projekt",
-    description: "Ein Einführungsvideo für eine Marketing intro, das im Rahmen des Arudino Uno Projekts erstellt wurde.",
+    title: "Marketing Intro - Arduino Uno Projekt",
+    description: "Ein Einführungsvideo für eine Marketing intro, das im Rahmen des Arduino Uno Projekts erstellt wurde.",
     fullDescription: "Dieses Video wurde als Teil einer umfassenden Marketingkampagne für einen lokalen Kunden erstellt. Ziel war es, die Markenbekanntheit zu steigern und die wichtigsten Werte des Unternehmens zu kommunizieren. Das Projekt umfasste die gesamte Planung, Drehbucherstellung, Aufnahme und Nachbearbeitung. Besonderer Wert wurde auf die visuelle Ästhetik und klare Botschaft gelegt.",
     thumbnailUrl: "/thumbnails/marketing_intro_new.jpg",
     videoUrl: "/Marketing Intro_3.mp4",
@@ -34,7 +34,7 @@ export const videos: Video[] = [
     views: "1.2K",
     tools: ["Adobe Premiere Pro", "After Effects", "Photoshop", "Blender"],
     client: "Hochschule Bremerhaven",
-    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni",],
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni"],
     goals: [
       "Entwicklung eines ansprechenden Intro-Videos für die Social Media Präsenz",
       "Vermittlung der Kernwerte der Marke in unter 2 Minuten",
@@ -52,7 +52,7 @@ export const videos: Video[] = [
     ]
   },
   {
-    id: 4,
+    id: 2,
     title: "Interaktive Systeme Intro",
     description: "Detaillierte Analyse eines komplexen Designprozesses mit User Research und Iteration.",
     fullDescription: "Diese umfassende Case Study dokumentiert einen kompletten Designprozess von der Problemdefinition bis zur finalen Lösung. Besonders im Fokus steht die Methodik der Nutzerforschung und wie die gewonnenen Erkenntnisse in iterative Designverbesserungen eingeflossen sind. Das Video zeigt Interviews mit Nutzern, Affinity Mapping, Customer Journey Mapping und die verschiedenen Prototyping-Phasen. Der gesamte Prozess wurde durch die Double Diamond Methode strukturiert und zeigt, wie divergentes und konvergentes Denken zu innovativen Lösungen führt.",
@@ -64,6 +64,135 @@ export const videos: Video[] = [
     category: "Case Study",
     views: "1.8K",
     tools: ["Adobe Premiere Pro", "After Effects", "Photoshop"],
+    client: "TH Köln",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Sarah Mueller", "Thomas Weber"],
+    goals: [
+      "Dokumentation und Analyse eines vollständigen Design Thinking Prozesses",
+      "Demonstration der Bedeutung von Nutzerforschung für erfolgreiche Produkte",
+      "Visualisierung komplexer Designmethoden"
+    ],
+    challenges: [
+      "Verdichtung umfangreicher Inhalte in kurze Erklärvideos",
+      "Balance zwischen theoretischem Wissen und praktischen Beispielen",
+      "Visualisierung abstrakter Konzepte"
+    ],
+    outcomes: [
+      "Erfolgreiche Präsentation vor dem Dozenten",
+      "Positive Rückmeldungen von Kommilitonen zur Klarheit der Erklärungen",
+      "Nutzung des Videos als Referenz für zukünftige Projekte"
+    ]
+  },
+  {
+    id: 3,
+    title: "Projektvorstellung - Social Media TEIL 1",
+    description: "Kurzes Video zur Präsentation eines Social Media Projekts mit Fokus auf visuelle Kommunikation.",
+    fullDescription: "Dieser Screencast dokumentiert die visuelle Kommunikationsstrategie für ein Social Media Projekt. Im Rahmen des Moduls 'Digitale Medienproduktion' (DMP-17) an der Hochschule Bremerhaven wurde dieses Projekt unter der Leitung von Ralf C. Schreier entwickelt. Das Video zeigt die Konzeption und Umsetzung einer modernen visuellen Identität für soziale Medien, mit besonderem Fokus auf die Zielgruppenansprache und Designentscheidungen, die für eine effektive Kommunikation auf verschiedenen Plattformen getroffen wurden.",
+    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.48.jpg",
+    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.00.48.mp4",
+    duration: "2:15",
+    date: "März 2025",
+    semester: "7. Semester",
+    category: "Social Media",
+    views: "423",
+    tools: ["Adobe XD", "Photoshop", "Illustrator", "After Effects"],
+    client: "Hochschule Bremerhaven",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni", "Anton Ferchtandiker"],
+    goals: [
+      "Visuelle Kommunikationsstrategie entwickeln",
+      "Corporate Identity in Social Media integrieren",
+      "Konsistente Bildsprache etablieren"
+    ],
+    challenges: [
+      "Unterschiedliche Anforderungen verschiedener Plattformen",
+      "Vereinbarkeit von Markenwerten und Zielgruppeninteressen",
+      "Technische Beschränkungen bei der visuellen Umsetzung"
+    ],
+    outcomes: [
+      "Vollständiges Designsystem für Social Media",
+      "Optimierte Templates für verschiedene Plattformen",
+      "Positive Bewertung des Dozenten"
+    ],
+    relatedProjectId: 2
+  },
+  {
+    id: 4,
+    title: "Projektvorstellung - Social Media TEIL 2",
+    description: "Demonstration eines interaktiven App-Prototyps mit Fokus auf Benutzerinteraktion und Animation.",
+    fullDescription: "In diesem Video wird ein interaktiver App-Prototyp präsentiert, der im Rahmen des Moduls 'Digitale Medienproduktion' entwickelt wurde. Unter der Leitung von Dozent Ralf C. Schreier an der Hochschule Bremerhaven haben wir einen funktionalen Prototypen mit besonderem Fokus auf Benutzerinteraktion und Animation erstellt. Das Video demonstriert die verschiedenen Funktionen der App, die Navigationsstruktur und die Interaktionsmöglichkeiten. Besonders hervorgehoben werden die Micro-Animationen, die das Nutzererlebnis verbessern und die App intuitiver machen.",
+    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.02.jpg",
+    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.01.02.mp4",
+    duration: "3:28",
+    date: "März 2025",
+    semester: "7. Semester",
+    category: "UI/UX",
+    views: "352",
+    tools: ["Figma", "Principle", "After Effects", "Adobe XD"],
+    client: "Hochschule Bremerhaven",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni", "Anton Ferchtandiker"],
+    goals: [
+      "Intuitive Benutzeroberfläche entwickeln",
+      "Micro-Animationen für besseres Nutzererlebnis implementieren",
+      "Komplexe Funktionen zugänglich gestalten"
+    ],
+    challenges: [
+      "Balance zwischen Animation und Performance",
+      "Konsistenz über verschiedene Bildschirmgrößen",
+      "Integration von Feedback aus Nutzertests"
+    ],
+    outcomes: [
+      "Vollständig interaktiver Prototyp",
+      "Positive Rückmeldungen bei Nutzertests",
+      "Implementierbare Designspezifikationen für Entwickler"
+    ],
+    relatedProjectId: 3
+  },
+  {
+    id: 5,
+    title: "Projektvorstellung - Social Media TEIL 3",
+    description: "Screencast, der den Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
+    fullDescription: "Dieser Screencast dokumentiert den vollständigen Entwicklungsprozess eines Webdesign-Projekts. Das Video zeigt die Arbeit in verschiedenen Design- und Prototyping-Tools und erklärt die wichtigsten Designentscheidungen. Besondere Aufmerksamkeit wird auf responsive Design-Prinzipien und die Implementierung eines konsistenten Design-Systems gelegt. Der Screencast zeigt auch, wie Feedback von Stakeholdern in iterative Verbesserungen eingeflossen ist und wie Design-Entscheidungen auf der Grundlage von Benutzerforschung getroffen wurden.",
+    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.06.jpg",
+    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.01.06.mp4",
+    duration: "4:12",
+    date: "März 2025",
+    semester: "7. Semester",
+    category: "Webdesign",
+    views: "287",
+    tools: ["Adobe XD", "VS Code", "Chrome DevTools", "Figma"],
+    client: "Hochschule Bremerhaven",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni", "Anton Ferchtandiker"],
+    goals: [
+      "Vollständigen Designprozess dokumentieren",
+      "Responsive Design-Prinzipien anwenden",
+      "Design-System implementieren"
+    ],
+    challenges: [
+      "Komplexe Interaktionen darstellen",
+      "Technische Einschränkungen überwinden",
+      "Balance zwischen Ästhetik und Funktionalität"
+    ],
+    outcomes: [
+      "Fertige Website mit responsivem Design",
+      "Dokumentierter Workflow für zukünftige Projekte",
+      "Verbesserte Zusammenarbeit zwischen Design und Entwicklung"
+    ],
+    relatedProjectId: 4
+  },
+  {
+    id: 6,
+    title: "Projektvorstellung - Social Media TEIL 4",
+    description: "Screencast, der den kompletten Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
+    fullDescription: "In diesem finalen Screencast der Social Media Projektreihe wird der komplette Entwicklungsprozess eines Webdesign-Projekts von Anfang bis Ende gezeigt. Von der ersten Ideenfindung über Wireframes und Prototypen bis hin zur finalen Implementierung werden alle Schritte detailliert dokumentiert. Das Video erklärt die Designentscheidungen, technischen Herausforderungen und deren Lösungen. Ein besonderer Fokus liegt auf der Integration von User Feedback in den iterativen Designprozess und wie dadurch ein benutzerfreundliches Produkt entstanden ist.",
+    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.57.jpg",
+    videoUrl: "/videos 7 semster/2.mp4",
+    duration: "0:53",
+    date: "März 2025",
+    semester: "7. Semester",
+    category: "Webdesign",
+    views: "312",
+    tools: ["Adobe XD", "VS Code", "Chrome DevTools", "Sketch"],
+    client: "Hochschule Bremerhaven",
+    teamMembers: ["Kadir Diego Padin Rodriguez", "Regis Fwansoni", "Anton Ferchtandiker"],
     goals: [
       "Dokumentation und Analyse eines vollständigen Design Thinking Prozesses",
       "Demonstration der Bedeutung von Nutzerforschung für erfolgreiche Produkte",
@@ -79,123 +208,5 @@ export const videos: Video[] = [
       "Positives Feedback von Design-Experten",
       "Verbesserung des Verständnisses für nutzerorientierte Designprozesse im Team"
     ]
-  },
-  {
-    id: 5,
-    title: "Projektvorstellung - Social Media TEIL 1",
-    description: "Kurzes Video zur Präsentation eines Social Media Projekts mit Fokus auf visuelle Kommunikation.",
-    fullDescription: "Dieses Video präsentiert ein komplettes Social Media Kampagnenkonzept, das für einen fiktiven Kunden entwickelt wurde. Es umfasst Content-Strategie, visuelle Gestaltung und Analyseansätze. Die Kampagne zielt darauf ab, die Zielgruppe der 18-30-Jährigen über verschiedene Plattformen wie Instagram, TikTok und Twitter anzusprechen. Das Video demonstriert, wie eine einheitliche Markenbotschaft über verschiedene Kanäle hinweg kommuniziert werden kann, während die spezifischen Stärken jeder Plattform optimal genutzt werden.",
-    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.48.jpg",
-    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.00.48.mp4",
-    duration: "0:43",
-    date: "März 2025",
-    semester: "7. Semester",
-    category: "AVM",
-    views: "432",
-    tools: ["Adobe Premiere Pro", "Photoshop", "Illustrator", "Canva"],
-    goals: [
-      "Entwicklung einer plattformübergreifenden Social Media Strategie",
-      "Schaffung einer visuell ansprechenden und konsistenten Markenidentität",
-      "Konzeption von verschiedenen Content-Formaten für unterschiedliche Plattformen"
-    ],
-    challenges: [
-      "Anpassung der Inhalte an die Besonderheiten verschiedener Social Media Plattformen",
-      "Schaffung eines wiedererkennbaren visuellen Stils bei gleichzeitiger Variation",
-      "Integration aktueller Trends ohne die langfristige Markenstrategie zu kompromittieren"
-    ],
-    outcomes: [
-      "Umfassendes Content-Paket für drei Monate Social Media Marketing",
-      "Positive Bewertung der Kreativität und strategischen Ausrichtung",
-      "Mehrere umsetzbare Content-Templates für zukünftige Kampagnen"
-    ]
-  },
-  {
-    id: 6,
-    title: "Projektvorstellung - Social Media TEIL 2",
-    description: "Demonstration eines interaktiven App-Prototyps mit Fokus auf Benutzerinteraktion und Animation.",
-    fullDescription: "Dieses Video demonstriert einen voll funktionsfähigen interaktiven Prototyp einer mobilen Anwendung. Die App wurde entwickelt, um komplexe Daten in einer benutzerfreundlichen Oberfläche darzustellen. Besonderer Wert wurde auf die Mikrointeraktionen und Animationen gelegt, die das Nutzererlebnis verbessern. Der Prototyp wurde in Figma erstellt und mit erweiterten Prototyping-Funktionen angereichert. Das Video zeigt den kompletten User Flow durch verschiedene Funktionen der App und hebt die wichtigsten UX-Entscheidungen hervor.",
-    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.02.jpg",
-    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.01.02.mp4",
-    duration: "0:51",
-    date: "März 2025",
-    semester: "7. Semester",
-    category: "AVM",
-    views: "673",
-    tools: ["Figma", "Principle", "After Effects", "Framer"],
-    goals: [
-      "Erstellung eines realistischen App-Prototyps mit fortgeschrittenen Interaktionen",
-      "Demonstration von Mikroanimationen zur Verbesserung des Nutzererlebnisses",
-      "Visualisierung komplexer Daten in einer intuitiven Benutzeroberfläche"
-    ],
-    challenges: [
-      "Implementierung komplexer Animationen mit begrenzten Prototyping-Tools",
-      "Optimierung der Performance bei gleichzeitiger visueller Komplexität",
-      "Balancierung zwischen ästhetischem Design und funktionaler Usability"
-    ],
-    outcomes: [
-      "Hochwertiger interaktiver Prototyp als Portfolio-Stück",
-      "Verbessertes Verständnis für fortgeschrittene Prototyping-Techniken",
-      "Positive Ergebnisse in Usability-Tests mit potenziellen Nutzern"
-    ]
-  },
-  {
-    id: 7,
-    title: "Projektvorstellung - Social Media TEIL 3",
-    description: "Screencast, der den Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
-    fullDescription: "Dieser Screencast dokumentiert den kompletten Entwicklungsprozess eines Webdesign-Projekts von den ersten Wireframes bis zum fertigen Prototyp. Das Video zeigt die Arbeit in verschiedenen Design- und Prototyping-Tools und erklärt die wichtigsten Designentscheidungen. Besondere Aufmerksamkeit wird auf responsive Design-Prinzipien und die Implementierung eines konsistenten Design-Systems gelegt. Der Screencast zeigt auch, wie Feedback von Stakeholdern in iterative Verbesserungen eingeflossen ist und wie Design-Entscheidungen auf der Grundlage von Benutzerforschung getroffen wurden.",
-    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.01.06.jpg",
-    videoUrl: "/videos 7 semster/WhatsApp Video 2025-03-23 at 18.01.06.mp4",
-    duration: "0:38",
-    date: "März 2025",
-    semester: "7. Semester",
-    category: "AVM",
-    views: "512",
-    tools: ["Figma", "Adobe XD", "Photoshop", "VS Code"],
-    goals: [
-      "Dokumentation eines vollständigen Webdesign-Prozesses in Echtzeit",
-      "Demonstration von responsiven Design-Prinzipien und deren Implementierung",
-      "Erklärung der Entwicklung und Anwendung eines Design-Systems"
-    ],
-    challenges: [
-      "Effektive Kommunikation komplexer Design-Entscheidungen in Videoformat",
-      "Darstellung des iterativen Prozesses in begrenzter Zeit",
-      "Gleichzeitige Erklärung von Design-Theorie und praktischer Umsetzung"
-    ],
-    outcomes: [
-      "Umfassende Dokumentation als Lernressource",
-      "Verbesserung der eigenen Design-Workflow-Effizienz",
-      "Positives Feedback von Kommilitonen und Dozenten"
-    ],
-    relatedProjectId: 2
-  },
-  {
-    id: 8,
-    title: "Projektvorstellung - Social Media TEIL 4",
-    description: "Screencast, der den Entwicklungsprozess eines Webdesign-Projekts demonstriert.",
-    fullDescription: "Dieser Screencast dokumentiert den kompletten Entwicklungsprozess eines Webdesign-Projekts von den ersten Wireframes bis zum fertigen Prototyp. Das Video zeigt die Arbeit in verschiedenen Design- und Prototyping-Tools und erklärt die wichtigsten Designentscheidungen. Besondere Aufmerksamkeit wird auf responsive Design-Prinzipien und die Implementierung eines konsistenten Design-Systems gelegt. Der Screencast zeigt auch, wie Feedback von Stakeholdern in iterative Verbesserungen eingeflossen ist und wie Design-Entscheidungen auf der Grundlage von Benutzerforschung getroffen wurden.",
-    thumbnailUrl: "/thumbnails/WhatsApp Video 2025-03-23 at 18.00.57.jpg",
-    videoUrl: "/videos 7 semster/2.mp4",
-    duration: "0:38",
-    date: "März 2025",
-    semester: "7. Semester",
-    category: "AVM",
-    views: "512",
-    tools: ["Figma", "Adobe XD", "Photoshop", "VS Code"],
-    goals: [
-      "Dokumentation eines vollständigen Webdesign-Prozesses in Echtzeit",
-      "Demonstration von responsiven Design-Prinzipien und deren Implementierung",
-      "Erklärung der Entwicklung und Anwendung eines Design-Systems"
-    ],
-    challenges: [
-      "Effektive Kommunikation komplexer Design-Entscheidungen in Videoformat",
-      "Darstellung des iterativen Prozesses in begrenzter Zeit",
-      "Gleichzeitige Erklärung von Design-Theorie und praktischer Umsetzung"
-    ],
-    outcomes: [
-      "Umfassende Dokumentation als Lernressource",
-      "Verbesserung der eigenen Design-Workflow-Effizienz",
-      "Positives Feedback von Kommilitonen und Dozenten"
-    ],
-    relatedProjectId: 2
   }
 ];

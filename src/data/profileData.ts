@@ -78,20 +78,20 @@ export const profileData: Profile = {
     {
       id: 1,
       platform: "LinkedIn",
-      url: "https://linkedin.com/in/kadir-rodriguez",
+      url: "https://www.linkedin.com/in/kadir-diego-padin-rodriguez/",
       icon: "faLinkedin"
     },
     {
       id: 2,
       platform: "GitHub",
-      url: "https://github.com/kadirrodriguez",
+      url: "https://github.com/Rodriguez-Diego-web",
       icon: "faGithub"
     },
     {
       id: 3,
-      platform: "Behance",
-      url: "https://behance.net/kadirrodriguez",
-      icon: "faBehance"
+      platform: "Instagram",
+      url: "https://www.instagram.com/diego_rodriguez_digital/",
+      icon: "faInstagram"
     }
   ],
   education: [

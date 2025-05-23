@@ -8,6 +8,7 @@ import {
   faVolumeUp, 
   faVolumeMute,
   faTimes,
+  faFilter,
   faGraduationCap,
   faCalendarAlt,
   faEye,
@@ -74,7 +75,33 @@ const PageTitle = styled.h1`
   }
 `;
 
+const FiltersContainer = styled.div`
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+`;
 
+const FilterButton = styled.button<{ active: boolean }>`
+  padding: 8px 15px;
+  border-radius: 20px;
+  border: none;
+  background-color: ${props => props.active ? 'var(--accent-color)' : 'var(--secondary-color)'};
+  color: ${props => props.active ? 'white' : 'var(--text-color)'};
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  
+  &:hover {
+    background-color: ${props => props.active ? 'var(--accent-color)' : 'var(--hover-color)'};
+  }
+  
+  svg {
+    font-size: 12px;
+  }
+`;
 
 const VideosGrid = styled.div`
   display: grid;
@@ -253,7 +280,7 @@ const ModalOverlay = styled.div`
   justify-content: center;
   z-index: 1000;
   animation: ${fadeIn} 0.3s ease-out;
-  overflow-y: hidden;
+  overflow-y: auto;
   padding: 30px 15px;
 `;
 
@@ -266,22 +293,12 @@ const ModalContent = styled.div`
   box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
   animation: ${slideUp} 0.4s ease-out;
   display: grid;
-  grid-template-columns: 45% 55%;
+  grid-template-rows: auto 1fr;
   max-height: 90vh;
-  
-  @media (max-width: 992px) {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr;
-  }
-  
-  @media (max-width: 768px) {
-    width: 100%;
-    max-height: 100vh;
-    border-radius: 0;
-  }
 `;
 
 const VideoPlayerContainer = styled.div`
+  position: relative;
   width: 100%;
   background-color: black;
   aspect-ratio: 16 / 9;
@@ -292,8 +309,6 @@ const VideoElement = styled.video`
   width: 100%;
   height: 100%;
   object-fit: contain;
-  max-height: 90vh;
-  cursor: pointer;
 `;
 
 const PlayerControls = styled.div`
@@ -301,10 +316,17 @@ const PlayerControls = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 15px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0) 100%);
+  align-items: center;
+  gap: 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  
+  ${VideoPlayerContainer}:hover & {
+    opacity: 1;
+  }
 `;
 
 const ControlButton = styled.button`
@@ -319,10 +341,13 @@ const ControlButton = styled.button`
   justify-content: center;
   border-radius: 50%;
   transition: background-color 0.2s;
-  transition: opacity 0.3s;
   
-  ${VideoPlayerContainer}:hover & {
-    opacity: 1;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  svg {
+    font-size: 20px;
   }
 `;
 
@@ -360,67 +385,13 @@ const CloseButton = styled.button`
   }
 `;
 
-const ProgressBarContainer = styled.div`
-  width: 100%;
-  height: 5px;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
-  cursor: pointer;
-  position: relative;
-  margin-bottom: 12px;
-  
-  &:hover {
-    height: 8px;
-  }
-`;
-
-const ProgressBackground = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.2);
-  border-radius: 3px;
-`;
-
-const ProgressFill = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: var(--accent-color);
-  border-radius: 3px;
-  transition: width 0.1s linear;
-`;
-
-const ControlsRow = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-`;
-
-const TimeDisplay = styled.div`
-  color: white;
-  font-size: 14px;
-  opacity: 0.9;
-  font-family: monospace;
-  margin-left: 5px;
-`;
-
 const VideoDetailContainer = styled.div`
-  padding: 20px;
+  padding: 20px 25px;
   overflow-y: auto;
-  height: 90vh;
-  border-right: 1px solid var(--border-color);
-  
-  @media (max-width: 992px) {
-    height: auto;
-    max-height: 50vh;
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
-  }
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  height: calc(90vh - 50vh - 65px); /* Subtract video player and controls height */
 `;
 
 const VideoDetailTitle = styled.h2`
@@ -431,6 +402,7 @@ const VideoDetailTitle = styled.h2`
 `;
 
 // Korrigiere die doppelte Deklaration
+
 const DetailSection = styled.div`
   margin-bottom: 20px;
   background-color: var(--secondary-color);
@@ -610,26 +582,25 @@ const VideosPage: React.FC = () => {
   const [selectedVideo, setSelectedVideo] = useState<number | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string>('Alle');
   const videoRef = useRef<HTMLVideoElement>(null);
   const navigate = useNavigate();
   
-  const [currentTime, setCurrentTime] = useState(0);
-  const [duration, setDuration] = useState(0);
-  const [progress, setProgress] = useState(0);
-
+  // Get unique categories
+  const categories = ['Alle', ...Array.from(new Set(videos.map(video => video.category)))];
+  
+  // Filter videos by category
+  const filteredVideos = activeCategory === 'Alle' 
+    ? videos 
+    : videos.filter(video => video.category === activeCategory);
+  
   const handleVideoClick = (id: number) => {
     setSelectedVideo(id);
-    
-    // Prevent body scrolling when modal is open
-    document.body.style.overflow = 'hidden';
-    
-    // Start video playback after a short delay to allow modal to render
     setTimeout(() => {
       if (videoRef.current) {
-        videoRef.current.currentTime = 0;
         videoRef.current.play().catch(error => {
           console.error("Autoplay failed:", error);
-          // Fallback if autoplay fails (common on mobile devices)
+          // Fallback: Zeige den Play-Button an, wenn Autoplay fehlschlägt
           setIsPlaying(false);
         });
         setIsPlaying(true);
@@ -663,98 +634,71 @@ const VideosPage: React.FC = () => {
     }
   };
   
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      const current = videoRef.current.currentTime;
-      const videoDuration = videoRef.current.duration;
-      setCurrentTime(current);
-      setDuration(videoDuration);
-      setProgress((current / videoDuration) * 100);
-    }
-  };
-  
-  const handleProgressClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (videoRef.current) {
-      const progressBar = e.currentTarget;
-      const rect = progressBar.getBoundingClientRect();
-      const pos = (e.clientX - rect.left) / rect.width;
-      videoRef.current.currentTime = pos * videoRef.current.duration;
-    }
-  };
-  
-  // Format time in minutes:seconds
-  const formatTime = (time: number): string => {
-    if (isNaN(time)) return "0:00";
-    const minutes = Math.floor(time / 60);
-    const seconds = Math.floor(time % 60);
-    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-  };
-  
-  // Aktualisiert die tatsächliche Videodauer in der Datenquelle
-  const updateVideoDuration = () => {
-    if (videoRef.current && videoRef.current.duration) {
-      const actualDuration = videoRef.current.duration;
-      const formattedDuration = formatTime(actualDuration);
-      console.log(`Tatsächliche Videodauer: ${formattedDuration}`);
-      // Hier könnte man die tatsächliche Dauer in einer echten Anwendung
-      // in die Datenbank speichern
-    }
-  };
-  
   const closeModal = () => {
     setSelectedVideo(null);
     setIsPlaying(false);
-    
-    // Restore body scrolling when modal is closed
-    document.body.style.overflow = 'auto';
   };
   
   const handleRelatedProjectClick = (projectId: number) => {
     closeModal();
-    navigate(`/projects/${projectId}`);
+    navigate(`/projekte/${projectId}`);
   };
   
-  // Get selected video data
   const selectedVideoData = selectedVideo !== null 
     ? videos.find(video => video.id === selectedVideo) 
     : null;
     
-  // Get related project
+  const getRelatedProject = (projectId?: number) => {
+    if (!projectId) return null;
+    
+    return {
+      id: projectId,
+      title: `Projekt #${projectId}`,
+      type: "Zugehöriges Projekt"
+    };
+  };
+  
   const relatedProject = selectedVideoData?.relatedProjectId 
     ? getRelatedProject(selectedVideoData.relatedProjectId) 
     : null;
     
-  // Function to get related project data
-  // Placeholder for actual implementation that would fetch from projectsData
-  function getRelatedProject(projectId?: number) {
-    if (!projectId) return null;
-    
-    // This would be replaced with actual project data lookup
-    return {
-      id: projectId,
-      title: 'Related Project',
-      type: 'Web App'
-    };
-  }
-
   // Video-Thumbnail Generator
   const generateThumbnail = (videoSrc: string, thumbnail: string) => {
-    if (thumbnail) return thumbnail;
+    // Wenn ein Thumbnail existiert, verwende es
+    if (thumbnail && !thumbnail.includes('undefined')) {
+      return thumbnail;
+    }
     
-    // Generate a thumbnail from video (placeholder implementation)
-    // In a real app, you might use a server-side function or a library
-    return `https://via.placeholder.com/320x180/333333/FFFFFF?text=Video+Thumbnail`;
+    // Fallback zur Video-URL ohne Dateiendung (für Platzhalter)
+    return `/thumbnails/video_placeholder.jpg`;
   };
-
+  
   return (
     <PageContainer>
       <PageHeader>
         <PageTitle>Meine Videos</PageTitle>
+        <FiltersContainer>
+          <FilterButton 
+            active={false} 
+            onClick={() => {}}>
+            <FontAwesomeIcon icon={faFilter} />
+            Filter
+          </FilterButton>
+          
+          {categories.map((category) => (
+            <FilterButton 
+              key={category}
+              active={activeCategory === category}
+              onClick={() => setActiveCategory(category)}>
+              {category}
+            </FilterButton>
+          ))}
+        </FiltersContainer>
       </PageHeader>
       
-      <VideosGrid>
-        {videos.length > 0 ? (
-          videos.map(video => (
+      {filteredVideos.length > 0 ? (
+        <VideosGrid>
+          {filteredVideos.map(video => (
             <VideoCard key={video.id} onClick={() => handleVideoClick(video.id)}>
               <VideoThumbnail thumbnail={generateThumbnail(video.videoUrl, video.thumbnailUrl)}>
                 <PlayOverlay>
@@ -764,6 +708,10 @@ const VideosPage: React.FC = () => {
                 </PlayOverlay>
               </VideoThumbnail>
               <VideoInfo>
+                <TagsContainer>
+                  <CategoryTag>{video.category}</CategoryTag>
+                  {video.semester && <SemesterTag>{video.semester}</SemesterTag>}
+                </TagsContainer>
                 <VideoTitle>{video.title}</VideoTitle>
                 <VideoDescription>{video.description}</VideoDescription>
                 <MetaInfo>
@@ -771,25 +719,55 @@ const VideosPage: React.FC = () => {
                     <FontAwesomeIcon icon={faCalendarAlt} />
                     {video.date}
                   </MetaItem>
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faClock} />
+                    {video.duration}
+                  </MetaItem>
+                  <MetaItem>
+                    <FontAwesomeIcon icon={faEye} />
+                    {video.views} Views
+                  </MetaItem>
                 </MetaInfo>
               </VideoInfo>
             </VideoCard>
-          ))
-        ) : (
-          <NoVideosMessage>
-            <h3>Keine Videos gefunden</h3>
-            <p>Es gibt keine Videos.</p>
-          </NoVideosMessage>
-        )}
-      </VideosGrid>
+          ))}
+        </VideosGrid>
+      ) : (
+        <NoVideosMessage>
+          <h3>Keine Videos gefunden</h3>
+          <p>Es gibt keine Videos in der Kategorie "{activeCategory}".</p>
+        </NoVideosMessage>
+      )}
       
       {selectedVideo !== null && selectedVideoData && (
         <ModalOverlay onClick={closeModal}>
           <ModalContent onClick={e => e.stopPropagation()}>
-            <VideoDetailContainer>
+            <VideoPlayerContainer>
               <CloseButton onClick={closeModal}>
                 <FontAwesomeIcon icon={faTimes} />
               </CloseButton>
+              <VideoElement 
+                ref={videoRef}
+                src={selectedVideoData.videoUrl} 
+                controls={false}
+                onPlay={() => setIsPlaying(true)}
+                onPause={() => setIsPlaying(false)} 
+                onClick={handlePlayPause}
+              />
+              <PlayerControls>
+                <PlayButton onClick={handlePlayPause}>
+                  <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
+                </PlayButton>
+                <ControlButton onClick={handleMute}>
+                  <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
+                </ControlButton>
+                <ControlButton onClick={handleFullscreen}>
+                  <FontAwesomeIcon icon={faExpand} />
+                </ControlButton>
+              </PlayerControls>
+            </VideoPlayerContainer>
+            
+            <VideoDetailContainer>
               <VideoDetailTitle>{selectedVideoData.title}</VideoDetailTitle>
               
               <DetailSection>
@@ -811,18 +789,133 @@ const VideosPage: React.FC = () => {
                   <FontAwesomeIcon icon={faCalendarAlt} />
                   {selectedVideoData.date}
                 </MetaItem>
+                <MetaItem>
+                  <FontAwesomeIcon icon={faClock} />
+                  {selectedVideoData.duration}
+                </MetaItem>
+                <MetaItem>
+                  <FontAwesomeIcon icon={faEye} />
+                  {selectedVideoData.views} Views
+                </MetaItem>
               </MetaContainer>
+                    <SectionTitle>
+                      <FontAwesomeIcon icon={faBullseye} />
+                      Ziele
+                    </SectionTitle>
+                    <DetailsList>
+                      {selectedVideoData.goals.map((goal, index) => (
+                        <DetailItem key={index}>{goal}</DetailItem>
+                      ))}
+                    </DetailsList>
+                  </DetailSection>
+                )}
+                
+                {selectedVideoData.challenges && selectedVideoData.challenges.length > 0 && (
+                  <DetailSection>
+                    <SectionTitle>
+                      <FontAwesomeIcon icon={faPuzzlePiece} />
+                      Herausforderungen
+                    </SectionTitle>
+                    <DetailsList>
+                      {selectedVideoData.challenges.map((challenge, index) => (
+                        <DetailItem key={index}>{challenge}</DetailItem>
+                      ))}
+                    </DetailsList>
+                  </DetailSection>
+                )}
+              </Column>
               
-              <TwoColumnLayout>
-                <Column>
-                  {selectedVideoData.goals && selectedVideoData.goals.length > 0 && (
-                    <DetailSection>
+              <Column>
+                {selectedVideoData.outcomes && selectedVideoData.outcomes.length > 0 && (
+                  <DetailSection>
+                    <SectionTitle>
+                      <FontAwesomeIcon icon={faCheckCircle} />
+                      Ergebnisse
+                    </SectionTitle>
+                    <DetailsList>
+                      {selectedVideoData.outcomes.map((outcome, index) => (
+                        <DetailItem key={index}>{outcome}</DetailItem>
+                      ))}
+                    </DetailsList>
+                  </DetailSection>
+                )}
+                
+                {selectedVideoData.tools && selectedVideoData.tools.length > 0 && (
+                  <DetailSection>
+                    <SectionTitle>
+                      <FontAwesomeIcon icon={faTools} />
+                      Verwendete Tools
+                    </SectionTitle>
+                    <ToolsContainer>
+                      {selectedVideoData.tools.map((tool, index) => (
+                        <ToolTag key={index}>
+                          {tool}
+                        </ToolTag>
+                      ))}
+                    </ToolsContainer>
+                  </DetailSection>
+                )}
+              </Column>
+            </TwoColumnLayout>
+            
+            {selectedVideoData.teamMembers && selectedVideoData.teamMembers.length > 0 && (
+              <DetailSection>
+                <SectionTitle>
+                  <FontAwesomeIcon icon={faUsers} />
+                  Team
+                </SectionTitle>
+                <TeamContainer>
+                  {selectedVideoData.teamMembers.map((member, index) => (
+                    <TeamMember key={index}>
+                      {member}
+                    </TeamMember>
+                  ))}
+                </TeamContainer>
+              </DetailSection>
+            )}
+            
+            {selectedVideoData.client && (
+              <DetailSection>
+                <SectionTitle>
+                  <FontAwesomeIcon icon={faLink} />
+                  Kunde
+                </SectionTitle>
+                <DetailText>
+                  {selectedVideoData.client}
+                </DetailText>
+              </DetailSection>
+            )}
+            
+            {relatedProject && (
+              <DetailSection>
+                <SectionTitle>
+                  <FontAwesomeIcon icon={faLink} />
+                  Verwandtes Projekt
+                </SectionTitle>
+                <RelatedProject onClick={() => handleRelatedProjectClick(relatedProject.id)}>
+                  <RelatedProjectInfo>
+                    <RelatedProjectTitle>{relatedProject.title}</RelatedProjectTitle>
+                    <RelatedProjectType>{relatedProject.type}</RelatedProjectType>
+                  </RelatedProjectInfo>
+                  <ViewRelatedButton>
+                    Ansehen
+                    <FontAwesomeIcon icon={faArrowRight} />
+                  </ViewRelatedButton>
+                </RelatedProject>
+              </DetailSection>
+            )}
+          </VideoDetailContainer>
+        </ModalContent>
+      </ModalOverlay>
+    )}
+  </PageContainer>
+);
                       <SectionTitle>
                         <FontAwesomeIcon icon={faBullseye} />
                         Ziele
                       </SectionTitle>
                       <DetailsList>
-                        {selectedVideoData.goals.map((goal: string, index: number) => (
+                        {selectedVideoData.goals.map((goal, index) => (
                           <DetailItem key={index}>{goal}</DetailItem>
                         ))}
                       </DetailsList>
@@ -924,40 +1017,6 @@ const VideosPage: React.FC = () => {
                 </DetailSection>
               )}
             </VideoDetailContainer>
-            
-            <VideoPlayerContainer>
-              <VideoElement 
-                ref={videoRef}
-                src={selectedVideoData.videoUrl} 
-                controls={false}
-                onPlay={() => setIsPlaying(true)}
-                onPause={() => setIsPlaying(false)} 
-                onClick={handlePlayPause}
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedMetadata={updateVideoDuration}
-                playsInline
-              />
-              <PlayerControls>
-                <ProgressBarContainer onClick={handleProgressClick}>
-                  <ProgressBackground />
-                  <ProgressFill style={{ width: `${progress}%` }} />
-                </ProgressBarContainer>
-                <ControlsRow>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                    <PlayButton onClick={handlePlayPause}>
-                      <FontAwesomeIcon icon={isPlaying ? faPause : faPlay} />
-                    </PlayButton>
-                    <ControlButton onClick={handleMute}>
-                      <FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeUp} />
-                    </ControlButton>
-                    <TimeDisplay>{formatTime(currentTime)} / {formatTime(duration)}</TimeDisplay>
-                  </div>
-                  <ControlButton onClick={handleFullscreen}>
-                    <FontAwesomeIcon icon={faExpand} />
-                  </ControlButton>
-                </ControlsRow>
-              </PlayerControls>
-            </VideoPlayerContainer>
           </ModalContent>
         </ModalOverlay>
       )}

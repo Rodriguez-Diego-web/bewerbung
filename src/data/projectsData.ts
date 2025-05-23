@@ -20,6 +20,71 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    id: 11,
+    title: "Dudes Quiz",
+    description: "Ein interaktives Spiel, mit dem Freunde testen können, wie gut sie sich kennen. Spieler können personalisierte Fragen übereinander beantworten und ihre Ergebnisse vergleichen. Das Projekt zeigt die Kombination von Spielmechanik und sozialer Interaktion in einer Web-Anwendung.",
+    category: "website",
+    images: [
+      { path: "/Projektbilder/dudesbilderrr/1.png", alt: "Dudes Quiz Startseite" },
+      { path: "/Projektbilder/dudesbilderrr/2.png", alt: "Dudes Quiz Spielmodus" },
+      { path: "/Projektbilder/dudesbilderrr/3.png", alt: "Dudes Quiz Ergebnisse" }
+    ],
+    technologies: ["React", "Firebase", "JavaScript", "CSS3", "Responsive Design", "SEO-Optimierung"],
+    featured: true,
+    projectUrl: "https://dudesperfect.netlify.app/",
+    type: "personal",
+    year: "2025"
+  },
+  {
+    id: 12,
+    title: "Diego's Craft",
+    description: "Eine Showcase-Website, die praktische Tipps und Best Practices zum Programmieren und zur Web-Entwicklung bietet. Die Seite demonstriert verschiedene Coding-Techniken und Vorgehensweisen für Entwickler aller Erfahrungsstufen.",
+    category: "website",
+    images: [
+      { path: "/Projektbilder/craftbilder/1.png", alt: "Diego's Craft Hauptseite" },
+      { path: "/Projektbilder/craftbilder/2.png", alt: "Diego's Craft Tutorials" },
+      { path: "/Projektbilder/craftbilder/3.png", alt: "Diego's Craft Ressourcen" }
+    ],
+    technologies: ["React", "HTML5", "CSS3", "JavaScript", "Responsive Design", "SEO-Optimierung"],
+    featured: true,
+    projectUrl: "https://diegoscraft.netlify.app/",
+    type: "personal",
+    year: "2025"
+  },
+  {
+    id: 13,
+    title: "Kira Personal Training",
+    description: "Eine Website für eine Personal Trainerin, die ihre Dienstleistungen und Trainingsmethoden präsentiert. Das Projekt befindet sich noch in der Entwicklung, zeigt aber bereits die klare Struktur und das Design. Ein echtes Kundenprojekt mit Fokus auf professionelle Darstellung im Fitness-Bereich.",
+    category: "website",
+    images: [
+      { path: "/Projektbilder/kirabilder/1.png", alt: "Kira PT Startseite" },
+      { path: "/Projektbilder/kirabilder/2.png", alt: "Kira PT Über mich" },
+      { path: "/Projektbilder/kirabilder/3.png", alt: "Kira PT Leistungen" },
+      { path: "/Projektbilder/kirabilder/4.png", alt: "Kira PT Kontakt" }
+    ],
+    technologies: ["React", "CMS", "JavaScript", "CSS3", "Responsive Design", "SEO-Optimierung"],
+    featured: true,
+    projectUrl: "https://www.kiramariecremer.de/",
+    type: "client",
+    year: "2025"
+  },
+  {
+    id: 14,
+    title: "RIRELI E-Commerce",
+    description: "Eine E-Commerce-Plattform für Mode und Accessoires. Dieses Mockup-Projekt demonstriert das komplette Nutzer-Erlebnis eines Online-Shops, von der Produktsuche bis zum Checkout-Prozess. Besonderer Fokus liegt auf benutzerfreundlicher Navigation und attraktiver Produktpräsentation.",
+    category: "website",
+    images: [
+      { path: "/Projektbilder/RIRELIBILDER/1.png", alt: "RIRELI Shop Startseite" },
+      { path: "/Projektbilder/RIRELIBILDER/2.png", alt: "RIRELI Produktseite" },
+      { path: "/Projektbilder/RIRELIBILDER/3.png", alt: "RIRELI Warenkorb" }
+    ],
+    technologies: ["React", "Firebase", "JavaScript", "CSS3", "Responsive Design", "SEO-Optimierung"],
+    featured: true,
+    projectUrl: "https://rireli.netlify.app/",
+    type: "academic",
+    year: "2025"
+  },
+  {
     id: 1,
     title: "CityShare",
     description: "Eine Plattform für das Teilen urbaner Ressourcen und die Förderung nachhaltiger Stadtentwicklung. CityShare wurde als fiktives Kundenprojekt entwickelt und bietet innovative Lösungen für urbane Mobilität und Ressourcenteilung.",

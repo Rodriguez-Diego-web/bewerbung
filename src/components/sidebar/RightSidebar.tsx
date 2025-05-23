@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { IconType, IconBaseProps } from 'react-icons'; 
 import { FaQuestionCircle, FaCheckCircle, FaRocket, FaGlobeAmericas, FaStar, FaTimes, FaFilm } from 'react-icons/fa'; 
-import { FaLinkedin, FaGithub, FaBehance } from 'react-icons/fa'; 
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa'; 
 import { profileData, SocialLink } from '../../data/profileData'; 
 
 // Wrapper-Komponente für Icons
@@ -223,7 +223,7 @@ const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 const iconMap: { [key: string]: IconType } = {
   faLinkedin: FaLinkedin,
   faGithub: FaGithub,
-  faBehance: FaBehance,
+  faInstagram: FaInstagram,
   // Add other icons here if needed from profileData
 };
 
@@ -231,10 +231,15 @@ const RightSidebar = () => {
   const { socialLinks } = profileData; 
 
   const officialChannels = socialLinks.filter(link => 
-    ['linkedin', 'github', 'behance'].includes(link.platform.toLowerCase())
+    ['linkedin', 'github', 'instagram'].includes(link.platform.toLowerCase())
   );
 
   const deineWhatsAppNummer = "4917641673111"; // User's WhatsApp number
+
+  const handleErfahreMehrClick = () => {
+    // Spaß-Funktion für den "Erfahre mehr"-Button
+    alert('Praktikum gratis - Diego Pro für nur 0,99€! 😉 War nur ein Spaß!');
+  };
 
   const handleWhatsAppJaClick = () => {
     const nachricht = encodeURIComponent("Praktikumsanfrage auf deiner Webseite: JA! Ich bin interessiert.");
@@ -262,7 +267,7 @@ const RightSidebar = () => {
           <li>- Kreative Ideen am laufenden Band</li>
           <li>- Deadline-Dompteur (meistens)....(immer)</li>
         </ProFeatureList>
-        <Button><IconRenderer Icon={FaStar} /> Mehr erfahren</Button>
+        <Button onClick={handleErfahreMehrClick}><IconRenderer Icon={FaStar} /> Mehr erfahren</Button>
       </ProSection>
 
       <Section>
@@ -288,7 +293,7 @@ const RightSidebar = () => {
         <List>
           <ListItem>👩‍🏫 Lieblingslehrerin: Nicole Slink</ListItem>
           <ListItem>👨‍🏫 Lieblingslehrer: Ralf Schreier</ListItem>
-          <ListItem>🎨 Lieblingsfach: Animation</ListItem>
+          <ListItem>🎨 Lieblingsfach: AVM</ListItem>
           <ListItem>🥤 Lieblingsgetränk: Red Bull Acai</ListItem>
           <ListItem>⚡️ Kann 5 Dosen Red Bull am Tag beim Programmieren trinken.</ListItem>
           <ListItem>✨ Guter Code muss auch gut aussehen.</ListItem>
