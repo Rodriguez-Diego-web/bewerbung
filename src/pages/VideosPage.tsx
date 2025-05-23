@@ -10,8 +10,6 @@ import {
   faTimes,
   faGraduationCap,
   faCalendarAlt,
-  faEye,
-  faClock,
   faBullseye,
   faPuzzlePiece,
   faCheckCircle,
@@ -202,33 +200,11 @@ const MetaItem = styled.div`
   }
 `;
 
-const CategoryTag = styled.div`
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 15px;
-  background-color: var(--accent-color-light);
-  color: var(--accent-color);
-  font-size: 12px;
-  font-weight: 500;
-  margin-right: 8px;
-`;
+// Nicht verwendete Komponente entfernt
 
-const SemesterTag = styled.div`
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 15px;
-  background-color: var(--secondary-accent-light);
-  color: var(--secondary-accent);
-  font-size: 12px;
-  font-weight: 500;
-`;
+// Nicht verwendete Komponente entfernt
 
-const TagsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 12px;
-`;
+// Nicht verwendete Komponente entfernt
 
 const MetaContainer = styled.div`
   display: flex;

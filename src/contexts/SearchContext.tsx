@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import { projects, Project } from '../data/projectsData';
+import { projects } from '../data/projectsData';
 import { videos } from '../data/videosData';
 import { profileData } from '../data/profileData';
 
