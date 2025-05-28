@@ -53,8 +53,8 @@ export const projects: Project[] = [
   },
   {
     id: 13,
-    title: "Kira Personal Training",
-    description: "Eine Website für eine Personal Trainerin, die ihre Dienstleistungen und Trainingsmethoden präsentiert. Das Projekt befindet sich noch in der Entwicklung, zeigt aber bereits die klare Struktur und das Design. Ein echtes Kundenprojekt mit Fokus auf professionelle Darstellung im Fitness-Bereich.",
+    title: "Kira Marie Cremer",
+    description: "Eine Website für Kira Marie Cremer.",
     category: "website",
     images: [
       { path: "/Projektbilder/kirabilder/1.png", alt: "Kira PT Startseite" },
@@ -104,7 +104,7 @@ export const projects: Project[] = [
   {
     id: 2,
     title: "Flyver",
-    description: "Eine innovative Reiseplattform, die Benutzern hilft, Flüge zu finden und zu buchen mit besonderem Fokus auf Benutzerfreundlichkeit. Flyver wurde als fiktiver Kunde im Rahmen eines Studienprojekts konzipiert und implementiert.",
+    description: "Eine innovative Ecommerce-Plattform, die Benutzern hilft, Produkte zu verkaufen.",
     category: "website",
     images: [
       { path: "/Projektbilder/flyver/1.png", alt: "Flyver Startseite" },
@@ -115,21 +115,20 @@ export const projects: Project[] = [
     technologies: ["React", "TypeScript", "Styled-Components", "Responsive Design", "UI/UX Design"],
     featured: true,
     projectUrl: "https://fleyver.netlify.app/",
-    type: "academic",
-    semester: "5. Semester",
+    type: "personal",
     year: "2024"
   },
   {
     id: 3,
     title: "FAMFORDOGS",
-    description: "Eine Plattform für Hundeliebhaber, die Ressourcen, Community und Produkte für Hunde und ihre Besitzer anbietet. Dieses Projekt wurde als Semesterabgabe im 6. Semester entwickelt und legt besonderen Wert auf Benutzerfreundlichkeit und ansprechendes Design für Haustierliebhaber.",
+    description: "Eine Plattform zum Spenden für Hunde auf Lombok und in Rumänien.",
     category: "website",
     images: [
       { path: "/Projektbilder/FFD/1.png", alt: "FAMFORDOGS Hauptseite" },
       { path: "/Projektbilder/FFD/2.png", alt: "FAMFORDOGS Produktseite" },
       { path: "/Projektbilder/FFD/3.png", alt: "FAMFORDOGS Community" }
     ],
-    technologies: ["WordPress", "WooCommerce", "CSS", "JavaScript", "Responsive Design"],
+    technologies: ["React", "CMS", "CSS", "JavaScript", "Responsive Design"],
     featured: true,
     projectUrl: "https://famfordogs.com/",
     type: "academic",
@@ -165,7 +164,7 @@ export const projects: Project[] = [
       { path: "/Projektbilder/inter/4.png", alt: "Mobile Integration" },
       { path: "/Projektbilder/inter/5.png", alt: "Responsives Design" }
     ],
-    technologies: ["JavaScript", "HTML5", "CSS3", "Interaction Design", "Prototyping", "User Testing"],
+    technologies: ["JavaScript", "HTML5", "CSS3", "Interaction Design", "Prototyping", "Animationen"],
     featured: true,
     projectUrl: "https://interaktivesysteme.fun/",
     type: "academic",
