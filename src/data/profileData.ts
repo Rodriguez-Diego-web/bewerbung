@@ -90,7 +90,7 @@ export const profileData: Profile = {
     {
       id: 3,
       platform: "Instagram",
-      url: "https://www.instagram.com/diego_rodriguez_digital/",
+      url: "https://www.instagram.com/diego_rodriguez_web/",
       icon: "faInstagram"
     }
   ],

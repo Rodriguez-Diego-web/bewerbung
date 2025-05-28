@@ -234,7 +234,7 @@ const Feed: React.FC = () => {
       content: (
         <>
           <Paragraph>
-            Hab eure Arbeiten verfolgt und bin beeindruckt. Kreative Power aus Bremerhaven, made in Altenwalde trifft auf echtes Handwerk – genau meine Welt. Als Filmmaker mit technischem Know-how sehe ich bei euch die perfekte Plattform für meine nächsten Schritte.
+            Ich hab eure Arbeiten verfolgt und bin beeindruckt. Kreative Power aus Bremerhaven, made in Altenwalde und Cuxhaven trifft auf echtes Handwerk – genau meine Welt. Als Filmmaker mit technischem Know-how sehe ich bei euch die perfekte Plattform für meine nächsten Schritte.
           </Paragraph>
           <Paragraph>
             Diese Bewerbung? Komplett selbstcodiert. Zeigt meine Denkweise: Nicht nur reden, sondern machen. Mit derselben Energie würde ich auch eure Projekte vorantreiben. Medien plus Code, ein Mix mit Potenzial.
@@ -257,17 +257,18 @@ const Feed: React.FC = () => {
             In der Postproduktion blühe ich richtig auf. Im Team spinnen wir Ideen weiter, überlegen gemeinsam, was machbar ist und was nicht. Diese Mischung aus technischer Herausforderung und kreativer Freiheit ist genau mein Ding. Und genau das sehe ich auch in euren Arbeiten.
           </Paragraph>
           <Paragraph>
-            Das <HighlightText>Cold Base Projekt</HighlightText> hat mir gezeigt, wie viel Potential in der Verbindung von Video und digitalen Medien steckt. Die <HighlightText>Animationen</HighlightText> hier sind ein Experiment, aus der gleichen Begeisterung entstanden, die ich für eure Projekte empfinde.
+            Das <HighlightText>Code Base Projekt</HighlightText> begonn im April 2025 und endet im Mai 2025.
           </Paragraph>
           <MilestoneList>
             {[ 
               { id: 'ms1', title: 'Konzept & erste Codezeilen', date: 'Anfang April 2025', icon: faLightbulb, delay: '0.1s' },
               { id: 'ms2', title: 'Grundstruktur & Responsive Design', date: 'Mitte April 2025', icon: faUserAstronaut, delay: '0.2s' },
-              { id: 'ms3', title: 'Integration des Cold Base Projekts', date: '29. April 2025', icon: faMagic, delay: '0.3s' },
+              { id: 'ms3', title: 'Integration des Code Base Projekts', date: '29. April 2025', icon: faMagic, delay: '0.3s' },
               { id: 'ms4', title: 'Implementierung der Animationseffekte', date: '3. Mai 2025', icon: faComments, delay: '0.4s' },
               { id: 'ms5', title: 'Video-Showcase Optimierung', date: '12. Mai 2025', icon: faBullseye, delay: '0.5s' },
               { id: 'ms6', title: 'Performance-Verbesserungen & UX-Updates', date: '18. Mai 2025', icon: faLightbulb, delay: '0.6s' },
               { id: 'ms7', title: 'Finale Portfolio-Erweiterung', date: '22. Mai 2025', icon: faMagic, delay: '0.7s' },
+              { id: 'ms8', title: 'Fertig', date: '28. Mai 2025', icon: faMagic, delay: '0.7s' },
             ].map((milestone, index) => (
               <MilestoneItem 
                 key={milestone.id} 
@@ -299,7 +300,11 @@ const Feed: React.FC = () => {
             Eure <HighlightText>visuellen Geschichten</HighlightText> haben Charakter. Bremerhavener DNA, aber auf professionellem Level. Ich will diese Art von Storytelling vertiefen und dabei neue Verbindungen zwischen Film und Code schaffen. Eure Medienpräsenz ist kein Zufall – sie zeigt den Wert von durchdachter Konzeption und präziser Umsetzung.
           </Paragraph>
           <Paragraph>
-            Euer Team atmet Innovation. Flache Hierarchien, klare Kommunikation, kreative Freiheit – das sind keine Buzzwords bei euch, sondern gelebte Realität. In diesem Umfeld kann ich meine Stärken voll einbringen und gleichzeitig wachsen.
+            Ich bin ein echter Fan eurer Sparkassen-Reihe.
+          </Paragraph>
+          <Paragraph>
+            Euer Team atmet Innovation. Man kann euch den Spaß ansehen, wenn man eure Reels schaut. <br />
+            Ich sitze immer mit einem <HighlightText>breiten Grinsen</HighlightText> vor meinem Handy, wenn ich eure Reels sehe und den Spaß bei euch mitfühle.
           </Paragraph>
         </>
       )
@@ -313,7 +318,8 @@ const Feed: React.FC = () => {
       content: (
         <>
           <Paragraph>
-            Skills in <HighlightText>React, TypeScript, Video-Editing</HighlightText> sind meine Basis. Dazu kommt visuelle Gestaltung und ein Auge für Detail. Aber wichtiger: ich lerne schnell und passe mich an. Neue Tech? Neue Tools? Kein Problem – ich tauche ein und liefere.
+            Skills in <HighlightText>Kameraführung, Storytelling und Video-Editing</HighlightText> sind meine Basis. Dazu kommt visuelle Gestaltung und ein Auge für Detail. <br />
+            Aber wichtiger: ich lerne schnell und passe mich an. Neue Tech? Neue Tools? Kein Problem – ich tauche ein und liefere.
           </Paragraph>
           <Paragraph>
             Meine Stärke ist die <HighlightText>Hands-on-Mentalität</HighlightText>. Keine langen Diskussionen, sondern Lösungen finden und umsetzen. Qualität statt Quantität. Kommunikation auf Augenhöhe. Und ein gesundes Maß Selbstorganisation, das Projekte voranbringt.
